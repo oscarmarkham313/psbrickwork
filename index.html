@@ -4,291 +4,673 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PS Brick.Work — Bespoke Outdoor Kitchens & Wood-Fired Ovens</title>
-<meta name="description" content="Bespoke Italian outdoor kitchens and wood-fired ovens, hand-built across Newry, Dundalk, Co. Louth, Meath and North Dublin.">
+<meta name="description" content="Italian-crafted outdoor kitchens and wood-fired ovens, designed in 3D and hand-built across Louth, Meath, Dundalk and North Dublin.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+/* ─────────────────────────────
+   TOKENS
+───────────────────────────── */
 :root{
-  --black:#1d1d1f;
-  --gray:#6e6e73;
-  --light:#f5f5f7;
-  --orange:#e07b2a;
-  --white:#ffffff;
-  --border:rgba(0,0,0,.08);
+  --ink:    #0e0c09;
+  --cream:  #f5efe6;
+  --warm:   #1c1914;
+  --accent: #c8612a;
+  --muted:  rgba(245,239,230,.48);
+  --rule:   rgba(245,239,230,.12);
+  --rule-d: rgba(14,12,9,.1);
+
+  --f-display:'Cormorant Garamond',Georgia,serif;
+  --f-body:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+
+  --ease:cubic-bezier(.22,1,.36,1);
 }
+
+/* ─────────────────────────────
+   BASE
+───────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;font-size:16px}
 body{
-  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Helvetica Neue',sans-serif;
-  background:#fff;color:var(--black);
-  overflow-x:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  font-family:var(--f-body);
+  background:var(--ink);
+  color:var(--cream);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
 }
+img,svg{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
 
-/* ── NAV ── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  height:52px;display:flex;align-items:center;justify-content:space-between;
-  padding:0 2.5rem;
-  background:rgba(255,255,255,.88);
-  backdrop-filter:saturate(180%) blur(20px);
-  -webkit-backdrop-filter:saturate(180%) blur(20px);
-  border-bottom:1px solid rgba(0,0,0,.1);
+/* ─────────────────────────────
+   NAV
+───────────────────────────── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 3rem;height:64px;
+  transition:background .45s var(--ease),border-color .45s;
+  border-bottom:1px solid transparent;
 }
-.logo{font-size:.95rem;font-weight:600;color:var(--black);text-decoration:none;letter-spacing:-.01em}
-.logo em{font-style:normal;color:var(--orange)}
-.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
-.nav-links a{color:var(--gray);text-decoration:none;font-size:.82rem;font-weight:400;transition:color .2s}
-.nav-links a:hover{color:var(--black)}
+.nav.scrolled{
+  background:rgba(14,12,9,.92);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  border-color:var(--rule);
+}
+.nav-logo{
+  font-family:var(--f-display);
+  font-size:1.25rem;font-weight:600;
+  letter-spacing:.04em;
+  color:var(--cream);
+}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;align-items:center;gap:2.5rem;list-style:none}
+.nav-links a{
+  font-size:.75rem;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);
+  transition:color .25s;
+}
+.nav-links a:hover{color:var(--cream)}
 .nav-cta{
-  background:var(--black)!important;color:#fff!important;
-  padding:.42rem 1.1rem;border-radius:980px;
-  font-size:.78rem!important;font-weight:500;
-  transition:background .2s!important;
+  padding:.5rem 1.25rem;
+  border:1px solid rgba(245,239,230,.3);
+  color:var(--cream)!important;
+  font-size:.72rem!important;
+  transition:background .25s,border-color .25s!important;
 }
-.nav-cta:hover{background:#3a3a3c!important}
+.nav-cta:hover{background:var(--accent);border-color:var(--accent)!important}
 
-/* ── HERO ── */
-#hero{
-  min-height:100vh;padding-top:52px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  background:#fff;text-align:center;
-  padding-left:1.5rem;padding-right:1.5rem;
+/* ─────────────────────────────
+   HERO
+───────────────────────────── */
+.hero{
+  min-height:100svh;
+  display:grid;grid-template-rows:1fr auto;
+  padding:0 3rem;
+  background:var(--ink);
+  position:relative;overflow:hidden;
 }
-.eyebrow{
-  font-size:.68rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--orange);margin-bottom:1.4rem;
-  opacity:0;animation:up .65s ease .2s both;
+/* Subtle warm gradient */
+.hero::before{
+  content:'';
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 75% 80%,rgba(200,97,42,.10) 0%,transparent 70%),
+    radial-gradient(ellipse 50% 40% at 20% 20%,rgba(200,97,42,.05) 0%,transparent 60%);
+  pointer-events:none;
+}
+
+.hero-inner{
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding-bottom:5rem;padding-top:10rem;
+  max-width:1280px;width:100%;margin:0 auto;
+  position:relative;z-index:1;
+}
+.hero-label{
+  font-size:.7rem;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:2.5rem;
+  clip-path:inset(0 100% 0 0);
+  animation:wipeIn .9s var(--ease) .2s forwards;
 }
 .hero-h1{
-  font-size:clamp(3.5rem,7.5vw,7rem);
-  font-weight:700;letter-spacing:-.055em;line-height:.96;
-  color:var(--black);
-  opacity:0;animation:up .65s ease .4s both;
-  margin-bottom:0;
+  font-family:var(--f-display);
+  font-size:clamp(4rem,9vw,10rem);
+  font-weight:300;
+  letter-spacing:-.02em;
+  line-height:.92;
+  color:var(--cream);
 }
-.hero-h1 i{font-style:normal;color:var(--orange)}
-
-/* 3-D canvas */
-#oven-wrap{
-  width:min(680px,88vw);height:min(480px,62vw);
-  margin:3rem 0 2.5rem;flex-shrink:0;
-  opacity:0;animation:up .65s ease .65s both;
+.hero-h1 .line{
+  display:block;overflow:hidden;
 }
-#oven-canvas{display:block;width:100%;height:100%}
+.hero-h1 .line span{
+  display:block;
+  transform:translateY(110%);
+  animation:slideUp .9s var(--ease) forwards;
+}
+.hero-h1 .line:nth-child(1) span{animation-delay:.35s}
+.hero-h1 .line:nth-child(2) span{animation-delay:.48s;font-style:italic;color:var(--accent)}
+.hero-h1 .line:nth-child(3) span{animation-delay:.61s}
 
+.hero-foot{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  padding:2.5rem 0 3rem;
+  border-top:1px solid var(--rule);
+  max-width:1280px;width:100%;margin:0 auto;
+  position:relative;z-index:1;
+  opacity:0;animation:fadeIn .8s ease 1.1s forwards;
+}
 .hero-sub{
-  font-size:clamp(1rem,2vw,1.18rem);color:var(--gray);
-  max-width:500px;line-height:1.65;font-weight:400;
-  opacity:0;animation:up .65s ease .85s both;
-  margin-bottom:2.2rem;
+  font-size:clamp(.9rem,1.2vw,1.05rem);
+  font-weight:300;
+  color:var(--muted);
+  line-height:1.7;
+  max-width:380px;
 }
-.hero-actions{
-  display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;
-  opacity:0;animation:up .65s ease 1s both;
+.hero-actions{display:flex;align-items:center;gap:1.5rem}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:.6rem;
+  background:var(--accent);
+  color:#fff;
+  padding:.85rem 2rem;
+  font-size:.8rem;font-weight:500;
+  letter-spacing:.06em;text-transform:uppercase;
+  transition:background .25s,transform .25s;
 }
-.btn-fill{
-  display:inline-flex;align-items:center;
-  background:var(--black);color:#fff;
-  padding:.88rem 2.1rem;border-radius:980px;
-  font-size:.9rem;font-weight:500;letter-spacing:-.01em;
-  text-decoration:none;transition:background .2s,transform .2s;
+.btn-primary:hover{background:#b5521f;transform:translateY(-1px)}
+.btn-link{
+  font-size:.78rem;font-weight:400;
+  color:var(--muted);
+  letter-spacing:.08em;text-transform:uppercase;
+  border-bottom:1px solid transparent;
+  transition:color .25s,border-color .25s;
 }
-.btn-fill:hover{background:#3a3a3c;transform:scale(1.015)}
-.btn-ghost{
-  display:inline-flex;align-items:center;
-  color:var(--orange);
-  padding:.88rem 2.1rem;
-  font-size:.9rem;font-weight:500;
-  text-decoration:none;transition:opacity .2s;
+.btn-link:hover{color:var(--cream);border-color:rgba(245,239,230,.35)}
+.scroll-hint{
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;
+  color:var(--muted);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;
 }
-.btn-ghost:hover{opacity:.7}
+.scroll-arrow{
+  width:1px;height:40px;background:var(--rule);
+  position:relative;overflow:hidden;
+}
+.scroll-arrow::after{
+  content:'';position:absolute;top:0;left:0;width:100%;height:100%;
+  background:rgba(200,97,42,.6);
+  animation:drip 2s ease-in-out infinite;
+}
+@keyframes drip{
+  0%{transform:translateY(-100%)}50%{transform:translateY(0)}100%{transform:translateY(100%)}
+}
 
-/* ── FEATURE STRIP ── */
-#strip{
-  background:var(--light);
-  display:grid;grid-template-columns:repeat(3,1fr);
-  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+/* ─────────────────────────────
+   TICKER
+───────────────────────────── */
+.ticker{
+  overflow:hidden;
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  padding:.9rem 0;
+  background:var(--warm);
 }
-.strip-cell{
-  padding:2.8rem 2.5rem;
-  border-right:1px solid var(--border);
+.ticker-inner{
+  display:flex;width:max-content;
+  animation:ticker 28s linear infinite;
 }
-.strip-cell:last-child{border-right:none}
-.strip-dot{
-  width:7px;height:7px;border-radius:50%;
-  background:var(--orange);margin-bottom:1.2rem;
+.ticker-inner:hover{animation-play-state:paused}
+.ticker-item{
+  font-family:var(--f-display);
+  font-size:1.1rem;font-weight:400;font-style:italic;
+  color:var(--muted);
+  white-space:nowrap;
+  padding:0 3rem;
 }
-.strip-cell h3{
-  font-size:1.05rem;font-weight:600;letter-spacing:-.025em;margin-bottom:.45rem;
-}
-.strip-cell p{font-size:.87rem;color:var(--gray);line-height:1.6}
+.ticker-item span{color:var(--accent);margin:0 .5rem}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* ── GENERIC SECTION ── */
-.section{padding:8rem 2.5rem;max-width:1080px;margin:0 auto}
-.section-bg{padding:8rem 2.5rem;background:var(--light)}
-.section-bg .in{max-width:1080px;margin:0 auto}
-.section-dark{padding:8rem 2.5rem;background:var(--black)}
-.section-dark .in{max-width:1080px;margin:0 auto;color:#fff}
+/* ─────────────────────────────
+   SECTION UTILITIES
+───────────────────────────── */
+.s-cream{background:var(--cream);color:var(--ink)}
+.s-dark{background:var(--ink);color:var(--cream)}
+.s-warm{background:var(--warm);color:var(--cream)}
 
-.tag{
-  font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--orange);display:block;margin-bottom:.9rem;
+.wrap{max-width:1280px;margin:0 auto;padding:0 3rem}
+.pad{padding:8rem 0}
+.pad-sm{padding:5rem 0}
+
+.s-label{
+  font-size:.68rem;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--accent);
+  display:block;margin-bottom:1.2rem;
 }
+.s-label.dark{color:var(--accent)}
+
 .h2{
-  font-size:clamp(2rem,4.2vw,3.6rem);font-weight:700;
-  letter-spacing:-.04em;line-height:1.04;margin-bottom:1.4rem;
+  font-family:var(--f-display);
+  font-size:clamp(2.6rem,5vw,5.5rem);
+  font-weight:300;
+  line-height:.95;
+  letter-spacing:-.02em;
 }
-.h2 i{font-style:normal;color:var(--orange)}
-.lead{
-  font-size:clamp(.97rem,1.4vw,1.12rem);color:var(--gray);
-  line-height:1.72;max-width:520px;
+.h2 em{font-style:italic;font-weight:300}
+.h2.ink{color:var(--ink)}
+
+.body-l{
+  font-size:clamp(.97rem,1.3vw,1.1rem);
+  font-weight:300;line-height:1.75;
+  color:rgba(14,12,9,.55);
+  max-width:500px;
+}
+.body-l.lt{color:var(--muted)}
+
+.rule-h{
+  border:none;border-top:1px solid var(--rule-d);
+  margin:3rem 0;
+}
+.rule-h.lt{border-color:var(--rule)}
+
+/* ─────────────────────────────
+   REVEAL ANIMATIONS
+───────────────────────────── */
+.r{
+  opacity:0;transform:translateY(32px);
+  transition:opacity .75s var(--ease),transform .75s var(--ease);
+}
+.r.show{opacity:1;transform:none}
+.r-up{
+  opacity:0;
+  transition:opacity .65s ease,transform .65s var(--ease);
+  overflow:hidden;
+}
+.r-up .inner-r{transform:translateY(40px);transition:transform .65s var(--ease)}
+.r-up.show .inner-r{transform:none}
+.r-up.show{opacity:1}
+
+/* ─────────────────────────────
+   STATEMENT
+───────────────────────────── */
+.statement{
+  padding:7rem 0;
+  text-align:center;
+}
+.statement-text{
+  font-family:var(--f-display);
+  font-size:clamp(2rem,4.5vw,4.8rem);
+  font-weight:300;font-style:italic;
+  line-height:1.15;
+  letter-spacing:-.01em;
+  color:var(--ink);
+  max-width:900px;
+  margin:0 auto;
+}
+.statement-text strong{
+  font-style:normal;font-weight:600;
+  color:var(--accent);
 }
 
-/* SPLIT */
-.split{display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:center}
-.split.rev{direction:rtl}
-.split.rev>*{direction:ltr}
+/* ─────────────────────────────
+   SPLIT SECTION
+───────────────────────────── */
+.split{
+  display:grid;grid-template-columns:1fr 1fr;
+  min-height:580px;
+}
+.split-visual{
+  position:relative;overflow:hidden;
+}
+.sv-kitchen{
+  background:
+    radial-gradient(ellipse at 30% 60%,rgba(200,97,42,.35) 0%,transparent 55%),
+    radial-gradient(ellipse at 80% 20%,rgba(160,70,25,.2) 0%,transparent 50%),
+    linear-gradient(150deg,#1e1208 0%,#2e1c0c 40%,#1a0e06 100%);
+}
+.sv-oven{
+  background:
+    radial-gradient(ellipse at 60% 40%,rgba(200,97,42,.28) 0%,transparent 55%),
+    radial-gradient(ellipse at 20% 80%,rgba(140,50,15,.25) 0%,transparent 50%),
+    linear-gradient(140deg,#120c06 0%,#261408 50%,#100a04 100%);
+}
+.sv-label{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-family:var(--f-display);
+  font-size:clamp(3rem,6vw,7rem);
+  font-weight:300;font-style:italic;
+  color:rgba(245,239,230,.08);
+  white-space:nowrap;
+  letter-spacing:-.02em;
+  user-select:none;pointer-events:none;
+  line-height:1;
+}
+.split-content{
+  padding:5rem 4.5rem;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.split-num{
+  font-family:var(--f-display);
+  font-size:5rem;font-weight:300;
+  color:rgba(245,239,230,.07);
+  line-height:1;margin-bottom:1.5rem;
+}
+.split-content .h2{margin-bottom:1.4rem}
+.split-content .body-l{margin-bottom:2.5rem}
 
-/* CHECKLIST */
-.ck{list-style:none;margin-top:2.2rem}
+.ck{list-style:none}
 .ck li{
   display:flex;align-items:center;gap:.9rem;
-  padding:.78rem 0;border-bottom:1px solid var(--border);
-  font-size:.95rem;color:var(--black);
+  padding:.72rem 0;
+  border-bottom:1px solid var(--rule);
+  font-size:.92rem;font-weight:300;
+  color:var(--muted);
 }
 .ck li::before{
-  content:'';width:6px;height:6px;border-radius:50%;
-  background:var(--orange);flex-shrink:0;
+  content:'';
+  width:5px;height:5px;border-radius:50%;
+  background:var(--accent);flex-shrink:0;
+}
+.ck.dark li{border-color:var(--rule-d);color:rgba(14,12,9,.55)}
+.ck.dark li::before{background:var(--accent)}
+
+/* ─────────────────────────────
+   PROCESS
+───────────────────────────── */
+.process-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0;
+  border-left:1px solid var(--rule-d);
+}
+.process-step{
+  padding:3rem 2.5rem;
+  border-right:1px solid var(--rule-d);
+  border-bottom:1px solid var(--rule-d);
+}
+.step-num{
+  font-family:var(--f-display);
+  font-size:3.5rem;font-weight:300;
+  color:rgba(14,12,9,.1);
+  line-height:1;margin-bottom:1.5rem;
+}
+.step-title{
+  font-family:var(--f-display);
+  font-size:1.55rem;font-weight:500;
+  letter-spacing:-.01em;margin-bottom:.7rem;
+  color:var(--ink);
+}
+.step-body{
+  font-size:.87rem;font-weight:300;
+  color:rgba(14,12,9,.5);line-height:1.7;
 }
 
-/* VISUAL PLACEHOLDER (until real photos) */
-.vis{
-  border-radius:16px;overflow:hidden;
-  aspect-ratio:4/3;
-  position:relative;
+/* ─────────────────────────────
+   MAGO — Feature
+───────────────────────────── */
+.mago{
+  padding:9rem 0;text-align:center;
+  background:var(--warm);
+  position:relative;overflow:hidden;
 }
-.vis-stone{
-  background:
-    radial-gradient(ellipse at 25% 30%,rgba(160,110,65,.55) 0%,transparent 55%),
-    radial-gradient(ellipse at 75% 70%,rgba(100,70,40,.4) 0%,transparent 50%),
-    repeating-linear-gradient(0deg,rgba(0,0,0,.22) 0,rgba(0,0,0,.22) 1px,transparent 1px,transparent 26px),
-    repeating-linear-gradient(90deg,rgba(0,0,0,.14) 0,rgba(0,0,0,.14) 1px,transparent 1px,transparent 52px),
-    linear-gradient(145deg,#3a2612,#231608,#2e1c0e);
+.mago::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(200,97,42,.12),transparent 70%);
+  pointer-events:none;
 }
-.vis-tile{
-  background:
-    radial-gradient(ellipse at 70% 25%,rgba(100,140,170,.45) 0%,transparent 50%),
-    linear-gradient(145deg,#1a2535,#2d4260,#1c2a3c);
+.mago-eyebrow{
+  font-size:.68rem;font-weight:600;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:2rem;
+}
+.mago-title{
+  font-family:var(--f-display);
+  font-size:clamp(3.5rem,8vw,9rem);
+  font-weight:300;font-style:italic;
+  line-height:.9;letter-spacing:-.03em;
+  color:var(--cream);margin-bottom:2.5rem;
+}
+.mago-body{
+  font-size:1.05rem;font-weight:300;
+  color:var(--muted);line-height:1.78;
+  max-width:580px;margin:0 auto 3.5rem;
+}
+.mago-stats{
+  display:inline-grid;grid-template-columns:repeat(3,1fr);
+  border:1px solid var(--rule);
+  max-width:640px;width:100%;
+  margin-top:4rem;
+}
+.mago-stat{
+  padding:2rem;border-right:1px solid var(--rule);
+}
+.mago-stat:last-child{border-right:none}
+.stat-val{
+  font-family:var(--f-display);
+  font-size:2.4rem;font-weight:300;font-style:italic;
+  color:var(--cream);margin-bottom:.35rem;
+}
+.stat-label{
+  font-size:.7rem;font-weight:400;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);
 }
 
-/* 3-CARD GRID */
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem}
-.card{
-  background:#fff;border:1px solid var(--border);border-radius:14px;
-  padding:2.2rem 2rem;transition:box-shadow .3s,transform .3s;
+/* ─────────────────────────────
+   FINISHES
+───────────────────────────── */
+.finishes-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1px;
+  background:var(--rule-d);
+  border:1px solid var(--rule-d);
 }
-.card:hover{box-shadow:0 10px 48px rgba(0,0,0,.09);transform:translateY(-4px)}
-.card h3{
-  font-size:1.08rem;font-weight:600;letter-spacing:-.025em;margin-bottom:.6rem;
-}
-.card p{font-size:.87rem;color:var(--gray);line-height:1.62}
-
-/* FINISHES */
-.fins{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:3.5rem}
 .fin{
-  border-radius:12px;overflow:hidden;aspect-ratio:.72/1;
-  position:relative;cursor:pointer;
-  transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s;
+  aspect-ratio:.8/1;
+  position:relative;overflow:hidden;
+  cursor:pointer;
 }
-.fin:hover{transform:scale(1.03);box-shadow:0 20px 60px rgba(0,0,0,.18)}
-.fin-label{
+.fin-bg{
+  position:absolute;inset:0;
+  transition:transform .6s var(--ease);
+}
+.fin:hover .fin-bg{transform:scale(1.04)}
+.fin-brick .fin-bg{background:
+  radial-gradient(ellipse at 35% 45%,rgba(190,90,40,.6) 0%,transparent 60%),
+  linear-gradient(155deg,#4e1e0c,#8c3615,#5c2210,#3a1208)}
+.fin-tile .fin-bg{background:
+  radial-gradient(ellipse at 65% 30%,rgba(100,135,160,.5) 0%,transparent 55%),
+  linear-gradient(155deg,#182030,#2a3d58,#1c2e42,#162030)}
+.fin-mosaic .fin-bg{background:
+  radial-gradient(ellipse at 25% 65%,rgba(130,55,155,.45) 0%,transparent 45%),
+  radial-gradient(ellipse at 75% 25%,rgba(50,100,180,.4) 0%,transparent 45%),
+  radial-gradient(ellipse at 55% 55%,rgba(210,90,20,.3) 0%,transparent 40%),
+  linear-gradient(155deg,#1a1030,#2c1848,#180a28)}
+.fin-plaster .fin-bg{background:
+  radial-gradient(ellipse at 50% 30%,rgba(220,205,175,.2) 0%,transparent 55%),
+  linear-gradient(155deg,#2c2418,#403320,#2c2218,#3a2e20)}
+
+.fin-info{
   position:absolute;bottom:0;left:0;right:0;
-  padding:1.4rem 1.2rem 1.1rem;
-  background:linear-gradient(to top,rgba(0,0,0,.72) 0%,transparent 100%);
-  color:#fff;font-size:.92rem;font-weight:600;
+  padding:1.8rem 1.5rem 1.5rem;
+  background:linear-gradient(to top,rgba(0,0,0,.8) 0%,transparent 100%);
 }
-.fin-label small{
-  display:block;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(255,255,255,.55);margin-bottom:.25rem;
+.fin-num{
+  font-size:.62rem;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(245,239,230,.45);margin-bottom:.4rem;
 }
-.fb{background:linear-gradient(140deg,#5a2510,#8c3a18,#6a2e14)}
-.ft{background:linear-gradient(140deg,#1e2d3d,#2d4060,#1e2d3d)}
-.fm{background:linear-gradient(140deg,#1e0f35,#3a1860,#200a38)}
-.fp{background:linear-gradient(140deg,#3a3025,#504030,#3a3025)}
+.fin-name{
+  font-family:var(--f-display);
+  font-size:1.4rem;font-weight:400;
+  color:var(--cream);
+}
 
-/* SERVICE */
-.service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3.5rem}
-.sc{border:1px solid var(--border);border-radius:12px;padding:2rem 1.8rem;text-align:center}
-.sc h3{font-size:1rem;font-weight:600;margin-bottom:.5rem;letter-spacing:-.02em}
-.sc p{font-size:.84rem;color:var(--gray);line-height:1.65}
+/* ─────────────────────────────
+   SERVICE AREA
+───────────────────────────── */
+.service-wrap{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:8rem;align-items:start;
+}
+.location-list{list-style:none}
+.location-list li{
+  display:flex;align-items:center;gap:1rem;
+  padding:1.2rem 0;
+  border-bottom:1px solid var(--rule-d);
+  font-size:1.05rem;font-weight:300;
+  color:var(--ink);
+}
+.location-list li::before{
+  content:'';
+  width:8px;height:8px;border-radius:50%;
+  background:var(--accent);flex-shrink:0;
+}
+.hours-box{
+  border:1px solid var(--rule-d);
+  overflow:hidden;
+}
+.hours-title{
+  padding:1.2rem 1.5rem;
+  border-bottom:1px solid var(--rule-d);
+  font-size:.68rem;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--accent);
+}
+.hours-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.95rem 1.5rem;
+  border-bottom:1px solid var(--rule-d);
+  font-size:.9rem;font-weight:300;
+  color:rgba(14,12,9,.7);
+}
+.hours-row:last-child{border-bottom:none}
+.hours-row .day{font-weight:500;color:var(--ink)}
+.hours-row .closed{color:rgba(14,12,9,.35)}
 
-/* CONTACT DARK */
-#contact{
-  padding:10rem 2.5rem;background:var(--black);text-align:center;
+/* ─────────────────────────────
+   CONTACT
+───────────────────────────── */
+.contact{
+  background:var(--ink);
+  padding:9rem 0 8rem;
+  position:relative;overflow:hidden;
 }
-#contact .tag{color:rgba(255,255,255,.4)}
-#contact .h2{color:#fff}
-#contact .lead{color:rgba(255,255,255,.55);margin:0 auto 3.5rem}
-.cta-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-.cta-w{
-  background:#fff;color:var(--black);
-  padding:.9rem 2.4rem;border-radius:980px;
-  font-size:.9rem;font-weight:600;text-decoration:none;
-  transition:background .2s;
+.contact::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 70% at 50% 100%,rgba(200,97,42,.12),transparent 65%);
+  pointer-events:none;
 }
-.cta-w:hover{background:#e8e8e8}
-.cta-o{
-  border:1px solid rgba(255,255,255,.25);color:#fff;
-  padding:.9rem 2.4rem;border-radius:980px;
-  font-size:.9rem;font-weight:400;text-decoration:none;
-  transition:border-color .2s;
+.contact-inner{
+  max-width:900px;margin:0 auto;
+  text-align:center;position:relative;z-index:1;
 }
-.cta-o:hover{border-color:rgba(255,255,255,.6)}
+.contact-title{
+  font-family:var(--f-display);
+  font-size:clamp(3rem,7vw,8rem);
+  font-weight:300;font-style:italic;
+  line-height:.9;letter-spacing:-.03em;
+  color:var(--cream);
+  margin-bottom:1.5rem;
+}
+.contact-sub{
+  font-size:1rem;font-weight:300;
+  color:var(--muted);line-height:1.75;
+  max-width:420px;margin:0 auto 4rem;
+}
+.contact-links{
+  display:flex;flex-direction:column;align-items:center;gap:0;
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  margin-bottom:3.5rem;
+}
+.contact-link{
+  display:flex;align-items:center;justify-content:space-between;
+  width:100%;padding:2rem 0;
+  border-bottom:1px solid var(--rule);
+  transition:padding-left .3s var(--ease);
+  cursor:pointer;
+}
+.contact-link:last-child{border-bottom:none}
+.contact-link:hover{padding-left:.8rem}
+.cl-label{
+  font-size:.68rem;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--accent);
+}
+.cl-val{
+  font-family:var(--f-display);
+  font-size:clamp(1.4rem,3vw,2.8rem);
+  font-weight:300;color:var(--cream);
+  letter-spacing:-.01em;
+}
+.cl-arrow{
+  font-size:1.4rem;color:var(--muted);
+  transition:color .25s,transform .25s;
+}
+.contact-link:hover .cl-arrow{color:var(--accent);transform:translateX(4px)}
+.contact-note{
+  font-size:.78rem;font-weight:300;
+  color:var(--muted);letter-spacing:.04em;
+}
 
-/* FOOTER */
+/* ─────────────────────────────
+   FOOTER
+───────────────────────────── */
 footer{
-  background:#1d1d1f;border-top:1px solid rgba(255,255,255,.08);
-  padding:2rem 2.5rem;
-  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+  background:var(--warm);
+  border-top:1px solid var(--rule);
+  padding:2.5rem 3rem;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:1.5rem;
 }
-footer p{font-size:.78rem;color:rgba(255,255,255,.35);letter-spacing:.01em}
-.flinks{display:flex;gap:1.8rem}
-.flinks a{font-size:.78rem;color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s}
-.flinks a:hover{color:rgba(255,255,255,.7)}
+footer p{
+  font-size:.75rem;font-weight:300;
+  color:rgba(245,239,230,.3);letter-spacing:.04em;
+}
+.footer-links{display:flex;gap:2.2rem}
+.footer-links a{
+  font-size:.72rem;font-weight:300;
+  color:rgba(245,239,230,.3);
+  text-transform:uppercase;letter-spacing:.1em;
+  transition:color .2s;
+}
+.footer-links a:hover{color:var(--cream)}
 
-/* ANIMATIONS */
-@keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
-.rev{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
-.rev.in{opacity:1;transform:none}
+/* ─────────────────────────────
+   KEYFRAMES
+───────────────────────────── */
+@keyframes slideUp{
+  from{transform:translateY(110%)}
+  to{transform:translateY(0)}
+}
+@keyframes wipeIn{
+  from{clip-path:inset(0 100% 0 0)}
+  to{clip-path:inset(0 0% 0 0)}
+}
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
 
-/* RESPONSIVE */
+/* ─────────────────────────────
+   RESPONSIVE
+───────────────────────────── */
 @media(max-width:960px){
+  .nav{padding:0 1.5rem}
   .nav-links{display:none}
-  .split{grid-template-columns:1fr;gap:3.5rem}
-  .split.rev{direction:ltr}
-  .cards{grid-template-columns:1fr}
-  .fins{grid-template-columns:repeat(2,1fr)}
-  #strip{grid-template-columns:1fr}
-  .strip-cell{border-right:none;border-bottom:1px solid var(--border)}
-  .strip-cell:last-child{border-bottom:none}
-  .service-grid{grid-template-columns:1fr}
+  .hero{padding:0 1.5rem}
+  .wrap{padding:0 1.5rem}
+  .hero-foot{flex-direction:column;align-items:flex-start;gap:2rem}
+  .split{grid-template-columns:1fr}
+  .split-visual{min-height:320px}
+  .split-content{padding:3.5rem 2rem}
+  .process-grid{grid-template-columns:1fr 1fr}
+  .finishes-grid{grid-template-columns:repeat(2,1fr)}
+  .service-wrap{grid-template-columns:1fr;gap:4rem}
+  .mago-stats{grid-template-columns:1fr;display:block;border:none}
+  .mago-stat{border-right:none;border-bottom:1px solid var(--rule);display:block}
+  .contact-links{max-width:100%}
 }
 @media(max-width:540px){
-  .fins{grid-template-columns:1fr}
-  .section,.section-bg,.section-dark{padding-left:1.5rem;padding-right:1.5rem}
-  #contact{padding-left:1.5rem;padding-right:1.5rem}
-  .cta-row{flex-direction:column;align-items:center}
+  .process-grid{grid-template-columns:1fr}
+  .finishes-grid{grid-template-columns:1fr}
+  .hero-h1{font-size:clamp(3rem,14vw,5rem)}
+  .contact-title{font-size:clamp(2.4rem,11vw,4rem)}
+  footer{flex-direction:column;padding:2rem 1.5rem}
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="#hero" class="logo">PS<em>·</em>Brick.Work</a>
+<!-- ═══ NAV ═══ -->
+<nav class="nav" id="nav">
+  <a href="#hero" class="nav-logo">PS<span>·</span>Brick.Work</a>
   <ul class="nav-links">
-    <li><a href="#craft">What We Build</a></li>
+    <li><a href="#builds">What We Build</a></li>
     <li><a href="#mago">The Mago</a></li>
     <li><a href="#finishes">Finishes</a></li>
     <li><a href="#service">Service Area</a></li>
@@ -296,35 +678,67 @@ footer p{font-size:.78rem;color:rgba(255,255,255,.35);letter-spacing:.01em}
   </ul>
 </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <p class="eyebrow">Made in Italy &middot; Built for Ireland</p>
-  <h1 class="hero-h1">Stone.<br><i>Perfected.</i></h1>
-  <div id="oven-wrap">
-    <canvas id="oven-canvas"></canvas>
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <p class="hero-label">Made in Italy &middot; Built for Ireland</p>
+    <h1 class="hero-h1">
+      <span class="line"><span>Outdoor</span></span>
+      <span class="line"><span>Kitchens,</span></span>
+      <span class="line"><span>Built Right.</span></span>
+    </h1>
   </div>
-  <p class="hero-sub">Bespoke outdoor kitchens and wood-fired ovens — designed in 3D, hand-built to last a lifetime.</p>
-  <div class="hero-actions">
-    <a href="#contact" class="btn-fill">Start Your Build</a>
-    <a href="#craft" class="btn-ghost">See what we build &darr;</a>
+  <div class="hero-foot">
+    <p class="hero-sub">Bespoke outdoor kitchens and wood-fired ovens — designed in 3D and hand-built to last a lifetime, from Italy to Ireland.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Start Your Build</a>
+      <a href="#builds" class="btn-link">Explore what we build</a>
+    </div>
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
   </div>
 </section>
 
-<!-- FEATURE STRIP -->
-<div id="strip">
-  <div class="strip-cell"><div class="strip-dot"></div><h3>3D Designed</h3><p>Every build starts as a photorealistic 3D model, resolved down to the individual brick before work begins.</p></div>
-  <div class="strip-cell"><div class="strip-dot"></div><h3>Hand Built</h3><p>No two builds are identical. Materials are chosen for your space, your climate, your vision.</p></div>
-  <div class="strip-cell"><div class="strip-dot"></div><h3>Made to Last</h3><p>Weather-resistant, stone-finished construction engineered to outlive every trend.</p></div>
+<!-- ═══ TICKER ═══ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-inner">
+    <span class="ticker-item">Bespoke Outdoor Kitchens <span>·</span></span>
+    <span class="ticker-item">Wood-Fired Ovens <span>·</span></span>
+    <span class="ticker-item">Designed in 3D <span>·</span></span>
+    <span class="ticker-item">Hand Built <span>·</span></span>
+    <span class="ticker-item">Italian Craft <span>·</span></span>
+    <span class="ticker-item">Made to Last <span>·</span></span>
+    <span class="ticker-item">Bespoke Outdoor Kitchens <span>·</span></span>
+    <span class="ticker-item">Wood-Fired Ovens <span>·</span></span>
+    <span class="ticker-item">Designed in 3D <span>·</span></span>
+    <span class="ticker-item">Hand Built <span>·</span></span>
+    <span class="ticker-item">Italian Craft <span>·</span></span>
+    <span class="ticker-item">Made to Last <span>·</span></span>
+  </div>
 </div>
 
-<!-- OUTDOOR KITCHENS -->
-<section id="craft" class="section">
+<!-- ═══ STATEMENT ═══ -->
+<div class="s-cream">
+  <div class="wrap statement r">
+    <p class="statement-text">"Every build starts as a photorealistic 3D render — <strong>down to the individual brick</strong> — before a single stone is laid."</p>
+  </div>
+</div>
+
+<!-- ═══ OUTDOOR KITCHENS ═══ -->
+<section id="builds" class="s-dark">
   <div class="split">
-    <div class="rev">
-      <span class="tag">Outdoor Kitchens</span>
-      <h2 class="h2">A kitchen built<br>for the outside.</h2>
-      <p class="lead">Designed for how you actually live outdoors. Every appliance, countertop, and brick is considered before a single tool is lifted.</p>
-      <ul class="ck">
+    <div class="split-visual sv-kitchen">
+      <span class="sv-label">Kitchen</span>
+    </div>
+    <div class="split-content r">
+      <div class="step-num">01</div>
+      <span class="s-label">Outdoor Kitchens</span>
+      <h2 class="h2">A kitchen<br><em>built for<br>outdoors.</em></h2>
+      <hr class="rule-h lt">
+      <p class="body-l lt">Designed for how you actually live outside. Every appliance, countertop, and brick is considered before a single tool is lifted.</p>
+      <ul class="ck" style="margin-top:1.8rem">
         <li>Built-in grills &amp; appliances</li>
         <li>Pizza ovens, smokers &amp; side burners</li>
         <li>Countertops &amp; bar seating</li>
@@ -332,427 +746,197 @@ footer p{font-size:.78rem;color:rgba(255,255,255,.35);letter-spacing:.01em}
         <li>Refrigeration &amp; sinks</li>
       </ul>
     </div>
-    <div class="vis vis-stone rev" style="transition-delay:.15s"></div>
+  </div>
+
+  <div class="split">
+    <div class="split-content r" style="order:1">
+      <div class="step-num">02</div>
+      <span class="s-label">Stone &amp; Finishing</span>
+      <h2 class="h2">Timeless<br><em>stone work.</em></h2>
+      <hr class="rule-h lt">
+      <p class="body-l lt">Brick. Tile. Mosaic. Venetian Plaster. Every finish is selected for beauty and engineered to endure decades of Irish weather.</p>
+      <a href="#finishes" class="btn-link" style="margin-top:2.5rem;display:inline-block">View all finishes →</a>
+    </div>
+    <div class="split-visual sv-oven" style="order:2">
+      <span class="sv-label">Stone</span>
+    </div>
   </div>
 </section>
 
-<!-- STONE WORK -->
-<div class="section-bg">
-  <div class="in">
-    <div class="split rev">
-      <div class="rev">
-        <span class="tag">Stone Work</span>
-        <h2 class="h2">Timeless finishes.<br>Built to endure.</h2>
-        <p class="lead">Brick. Tile. Mosaic. Venetian Plaster. Every surface is selected for beauty and built to handle decades of Irish weather without compromise.</p>
+<!-- ═══ PROCESS ═══ -->
+<div class="s-cream pad">
+  <div class="wrap">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:4rem">
+      <div class="r">
+        <span class="s-label dark">How It Works</span>
+        <h2 class="h2 ink">From idea<br><em>to reality.</em></h2>
       </div>
-      <div class="vis vis-tile rev" style="transition-delay:.15s"></div>
+      <p class="body-l r" style="max-width:280px;text-align:right;transition-delay:.1s">Every PS Brick.Work project follows four precise stages.</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-step r" style="transition-delay:.05s">
+        <div class="step-num">01</div>
+        <h3 class="step-title">Consultation</h3>
+        <p class="step-body">We visit your space, listen to your vision, and assess the site for the perfect build.</p>
+      </div>
+      <div class="process-step r" style="transition-delay:.12s">
+        <div class="step-num">02</div>
+        <h3 class="step-title">3D Design</h3>
+        <p class="step-body">A photorealistic 3D render is produced — showing every brick, every finish, every dimension.</p>
+      </div>
+      <div class="process-step r" style="transition-delay:.19s">
+        <div class="step-num">03</div>
+        <h3 class="step-title">Approval</h3>
+        <p class="step-body">You review and approve every detail. Amendments are made until the render matches your vision exactly.</p>
+      </div>
+      <div class="process-step r" style="transition-delay:.26s">
+        <div class="step-num">04</div>
+        <h3 class="step-title">Built by Hand</h3>
+        <p class="step-body">Pietro and his team hand-build your design on site. No shortcuts. No compromises.</p>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- THE MAGO OVEN -->
-<section id="mago" class="section" style="text-align:center">
-  <span class="tag rev" style="text-align:center">The Mago Oven</span>
-  <h2 class="h2 rev" style="text-align:center">Meet The Mago.</h2>
-  <p class="lead rev" style="margin:0 auto 4rem;text-align:center">Built in 3D to scale — amendable to the singular brick. Dressed in mosaic, stonework, or whatever commands your space. Engineered according to the Pizzaiolo tradition for authentic wood-fired cooking.</p>
-  <div class="cards">
-    <div class="card rev" style="transition-delay:.05s">
-      <h3>Pizza &amp; Roasts</h3>
-      <p>Authentic Neapolitan temperatures. Perfect for pizza, slow roasts, bread baking, and everything in between.</p>
-    </div>
-    <div class="card rev" style="transition-delay:.12s">
-      <h3>Any Finish</h3>
-      <p>Mosaic, stonework, brick, or Venetian plaster. Every Mago is dressed to match your outdoor space precisely.</p>
-    </div>
-    <div class="card rev" style="transition-delay:.19s">
-      <h3>3D to Reality</h3>
-      <p>Modelled brick by brick before a single stone is laid. You approve every detail before we begin building.</p>
-    </div>
-  </div>
-</section>
-
-<!-- FINISHES -->
-<div id="finishes" class="section-bg">
-  <div class="in">
-    <span class="tag rev">Materials &amp; Finishes</span>
-    <h2 class="h2 rev">Standard Custom Finishes</h2>
-    <p class="lead rev">Every material chosen with purpose. Every finish built for beauty and permanence.</p>
-    <div class="fins">
-      <div class="fin fb rev" style="transition-delay:.04s"><div class="fin-label"><small>Finish 01</small>Brick</div></div>
-      <div class="fin ft rev" style="transition-delay:.1s"><div class="fin-label"><small>Finish 02</small>Tiles</div></div>
-      <div class="fin fm rev" style="transition-delay:.16s"><div class="fin-label"><small>Finish 03</small>Mosaic</div></div>
-      <div class="fin fp rev" style="transition-delay:.22s"><div class="fin-label"><small>Finish 04</small>Venetian Plaster</div></div>
-    </div>
-  </div>
-</div>
-
-<!-- SERVICE AREA -->
-<section id="service" class="section">
-  <span class="tag rev">Where We Work</span>
-  <h2 class="h2 rev">We build where you live.</h2>
-  <p class="lead rev">Operating across the border corridor and greater Dublin region — bringing Italian craft directly to Irish homes.</p>
-  <div class="service-grid">
-    <div class="sc rev">
-      <h3>Newry &amp; Dundalk</h3>
-      <p>Mon–Fri: 8am – 4:30pm<br>Saturday: 10am – 2pm<br>Sunday: Closed</p>
-    </div>
-    <div class="sc rev" style="transition-delay:.1s">
-      <h3>Co. Louth &amp; Meath</h3>
-      <p>Mon–Fri: 8am – 4:30pm<br>Saturday: 10am – 2pm<br>Sunday: Closed</p>
-    </div>
-    <div class="sc rev" style="transition-delay:.2s">
-      <h3>North Dublin</h3>
-      <p>Mon–Fri: 8am – 4:30pm<br>Saturday: 10am – 2pm<br>Sunday: Closed</p>
+<!-- ═══ THE MAGO ═══ -->
+<section id="mago" class="mago">
+  <div class="wrap" style="position:relative;z-index:1">
+    <p class="mago-eyebrow r">The Signature Piece</p>
+    <h2 class="mago-title r">The Mago<br>Oven.</h2>
+    <p class="mago-body r">Built in 3D to scale — amendable to the singular brick. Dressed in mosaic, stonework, or whatever commands your space. Engineered according to the Pizzaiolo tradition for authentic wood-fired cooking — perfect for pizza, slow roasts, and everything in between.</p>
+    <a href="#contact" class="btn-primary r">Commission a Mago</a>
+    <div style="display:flex;justify-content:center">
+      <div class="mago-stats r" style="transition-delay:.15s">
+        <div class="mago-stat">
+          <div class="stat-val">3D</div>
+          <div class="stat-label">Designed to scale</div>
+        </div>
+        <div class="mago-stat">
+          <div class="stat-val">100%</div>
+          <div class="stat-label">Bespoke builds</div>
+        </div>
+        <div class="mago-stat">
+          <div class="stat-val">∞</div>
+          <div class="stat-label">Finish options</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <span class="tag rev">Get in Touch</span>
-  <h2 class="h2 rev">Ready to build?</h2>
-  <p class="lead rev">Tell us about your space. We'll take care of everything — from the first 3D render to the final stone.</p>
-  <div class="cta-row rev">
-    <a href="tel:+393780010333" class="cta-w">Call Pietro</a>
-    <a href="mailto:pietro@psbrick.work" class="cta-o">pietro@psbrick.work</a>
+<!-- ═══ FINISHES ═══ -->
+<section id="finishes" class="s-cream pad">
+  <div class="wrap" style="margin-bottom:3rem">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end">
+      <div class="r">
+        <span class="s-label">Materials &amp; Finishes</span>
+        <h2 class="h2 ink">Standard<br><em>custom finishes.</em></h2>
+      </div>
+      <p class="body-l r" style="max-width:260px;text-align:right;transition-delay:.1s">Every material chosen for permanence. Every finish built for beauty.</p>
+    </div>
   </div>
-  <p style="margin-top:2.5rem;font-size:.8rem;color:rgba(255,255,255,.28)">+39 378-001-0333</p>
+  <div class="finishes-grid">
+    <div class="fin fin-brick r" style="transition-delay:.04s">
+      <div class="fin-bg"></div>
+      <div class="fin-info"><div class="fin-num">01</div><div class="fin-name">Brick</div></div>
+    </div>
+    <div class="fin fin-tile r" style="transition-delay:.1s">
+      <div class="fin-bg"></div>
+      <div class="fin-info"><div class="fin-num">02</div><div class="fin-name">Tiles</div></div>
+    </div>
+    <div class="fin fin-mosaic r" style="transition-delay:.16s">
+      <div class="fin-bg"></div>
+      <div class="fin-info"><div class="fin-num">03</div><div class="fin-name">Mosaic</div></div>
+    </div>
+    <div class="fin fin-plaster r" style="transition-delay:.22s">
+      <div class="fin-bg"></div>
+      <div class="fin-info"><div class="fin-num">04</div><div class="fin-name">Venetian Plaster</div></div>
+    </div>
+  </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ═══ SERVICE AREA ═══ -->
+<section id="service" class="s-cream pad-sm" style="border-top:1px solid var(--rule-d)">
+  <div class="wrap">
+    <div class="service-wrap">
+      <div class="r">
+        <span class="s-label">Where We Work</span>
+        <h2 class="h2 ink" style="margin-bottom:2rem">We build<br><em>where<br>you live.</em></h2>
+        <ul class="location-list">
+          <li>Newry &amp; Dundalk</li>
+          <li>Co. Louth &amp; Meath</li>
+          <li>North Dublin</li>
+        </ul>
+      </div>
+      <div class="r" style="transition-delay:.15s">
+        <span class="s-label">Opening Hours</span>
+        <div class="hours-box">
+          <div class="hours-title">Studio Hours</div>
+          <div class="hours-row"><span class="day">Monday – Friday</span><span>8:00am – 4:30pm</span></div>
+          <div class="hours-row"><span class="day">Saturday</span><span>10:00am – 2:00pm</span></div>
+          <div class="hours-row"><span class="day">Sunday</span><span class="closed">Closed</span></div>
+        </div>
+        <p style="margin-top:2rem;font-size:.82rem;font-weight:300;color:rgba(14,12,9,.4);line-height:1.6">Site visits and consultations available outside of studio hours by appointment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section id="contact" class="contact">
+  <div class="contact-inner wrap">
+    <p class="mago-eyebrow r">Get in Touch</p>
+    <h2 class="contact-title r">Ready<br>to build?</h2>
+    <p class="contact-sub r">Tell us about your space. We'll handle everything from the first 3D render to the final stone.</p>
+    <div class="contact-links r">
+      <a href="tel:+393780010333" class="contact-link">
+        <div style="text-align:left">
+          <div class="cl-label">Call Pietro</div>
+          <div class="cl-val">+39 378-001-0333</div>
+        </div>
+        <span class="cl-arrow">→</span>
+      </a>
+      <a href="mailto:pietro@psbrick.work" class="contact-link">
+        <div style="text-align:left">
+          <div class="cl-label">Send an Email</div>
+          <div class="cl-val">pietro@psbrick.work</div>
+        </div>
+        <span class="cl-arrow">→</span>
+      </a>
+    </div>
+    <p class="contact-note r">We typically respond within one business day.</p>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
 <footer>
   <p>&copy; 2026 PS Brick.Work &nbsp;&middot;&nbsp; Crafted in Italy, Built in Ireland</p>
-  <nav class="flinks">
-    <a href="#craft">What We Build</a>
+  <nav class="footer-links">
+    <a href="#builds">What We Build</a>
+    <a href="#mago">The Mago</a>
     <a href="#finishes">Finishes</a>
     <a href="#contact">Contact</a>
   </nav>
 </footer>
 
-<!-- THREE.JS -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.148.0/build/three.min.js"></script>
 <script>
-(function(){
-  const wrap = document.getElementById('oven-wrap');
-  const canvas = document.getElementById('oven-canvas');
-  const dpr = Math.min(window.devicePixelRatio, 2);
+/* NAV scroll class */
+const nav = document.getElementById('nav');
+const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+window.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
 
-  function W(){ return wrap.clientWidth }
-  function H(){ return wrap.clientHeight }
-
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
-  renderer.setPixelRatio(dpr);
-  renderer.setSize(W(), H());
-  renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.15;
-  renderer.setClearColor(0xffffff, 1);
-
-  const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0xffffff);
-
-  const camera = new THREE.PerspectiveCamera(36, W()/H(), 0.1, 200);
-  camera.position.set(0, 2.6, 9.5);
-  camera.lookAt(0, 0.5, 0);
-
-  /* ── LIGHTING ── */
-  // Warm soft ambient
-  scene.add(new THREE.AmbientLight(0xfff5e8, 1.0));
-
-  // Key light — top-left daylight
-  const key = new THREE.DirectionalLight(0xfffaf0, 2.4);
-  key.position.set(6, 12, 8);
-  key.castShadow = true;
-  key.shadow.mapSize.set(2048, 2048);
-  key.shadow.camera.near = 1;
-  key.shadow.camera.far = 60;
-  key.shadow.camera.left = -8;
-  key.shadow.camera.right = 8;
-  key.shadow.camera.top = 8;
-  key.shadow.camera.bottom = -8;
-  key.shadow.radius = 12;
-  key.shadow.bias = -0.001;
-  scene.add(key);
-
-  // Fill — cool right side
-  const fill = new THREE.DirectionalLight(0xe0ecff, 0.5);
-  fill.position.set(-6, 4, -4);
-  scene.add(fill);
-
-  // Rim / back light
-  const rim = new THREE.DirectionalLight(0xfff8f0, 0.3);
-  rim.position.set(0, 8, -10);
-  scene.add(rim);
-
-  /* ── PROCEDURAL TEXTURES ── */
-  function brickTex(w, h, rBase, gBase, bBase){
-    const c = document.createElement('canvas');
-    c.width = w; c.height = h;
-    const ctx = c.getContext('2d');
-    // Mortar
-    ctx.fillStyle = `rgb(${rBase-35},${gBase-25},${bBase-18})`;
-    ctx.fillRect(0, 0, w, h);
-    const bw = w/9, bh = h/20, gap = Math.max(3, w/180);
-    for(let row = 0; row * bh < h + bh; row++){
-      const off = (row % 2) * bw * 0.5;
-      for(let col = -1; col * bw < w + bw; col++){
-        const x = col*bw + off, y = row*bh;
-        const v = (Math.random()-0.5) * 28;
-        ctx.fillStyle = `rgb(${Math.round(rBase+v)},${Math.round(gBase+v*.7)},${Math.round(bBase+v*.45)})`;
-        ctx.fillRect(x+gap, y+gap, bw-gap*2, bh-gap*2);
-        // top highlight
-        ctx.fillStyle = 'rgba(255,255,255,.09)';
-        ctx.fillRect(x+gap, y+gap, bw-gap*2, bh*0.3);
-        // bottom shadow
-        ctx.fillStyle = 'rgba(0,0,0,.2)';
-        ctx.fillRect(x+gap, y+bh-gap-bh*0.25, bw-gap*2, bh*0.25);
-      }
-    }
-    const t = new THREE.CanvasTexture(c);
-    t.wrapS = t.wrapT = THREE.RepeatWrapping;
-    return t;
-  }
-
-  function stoneTex(w, h){
-    const c = document.createElement('canvas');
-    c.width = w; c.height = h;
-    const ctx = c.getContext('2d');
-    // Base warm stone
-    const grd = ctx.createLinearGradient(0,0,w,h);
-    grd.addColorStop(0,'hsl(27,30%,60%)');
-    grd.addColorStop(1,'hsl(25,28%,52%)');
-    ctx.fillStyle = grd;
-    ctx.fillRect(0,0,w,h);
-    // Random veins / variation
-    for(let i = 0; i < 400; i++){
-      const x=Math.random()*w, y=Math.random()*h;
-      const len = 8+Math.random()*40;
-      const ang = Math.random()*Math.PI;
-      ctx.strokeStyle = `rgba(0,0,0,${Math.random()*.08+.01})`;
-      ctx.lineWidth = Math.random()*1.8+.3;
-      ctx.beginPath();
-      ctx.moveTo(x,y);
-      ctx.lineTo(x+Math.cos(ang)*len, y+Math.sin(ang)*len);
-      ctx.stroke();
-    }
-    // Lighter patches
-    for(let i = 0; i < 60; i++){
-      const x=Math.random()*w, y=Math.random()*h, r=20+Math.random()*50;
-      const grd2 = ctx.createRadialGradient(x,y,0,x,y,r);
-      grd2.addColorStop(0,'rgba(255,240,210,.07)');
-      grd2.addColorStop(1,'rgba(255,240,210,0)');
-      ctx.fillStyle = grd2;
-      ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.fill();
-    }
-    const t = new THREE.CanvasTexture(c);
-    t.wrapS = t.wrapT = THREE.RepeatWrapping;
-    return t;
-  }
-
-  /* ── MATERIALS ── */
-  const bTex = brickTex(1024, 1024, 182, 128, 82);
-  bTex.repeat.set(5, 3);
-  const brickMat = new THREE.MeshStandardMaterial({
-    map: bTex, roughness: 0.92, metalness: 0.0, color: 0xddbb95
-  });
-
-  const sTex = stoneTex(1024, 1024);
-  sTex.repeat.set(4, 2.5);
-  const domeMat = new THREE.MeshStandardMaterial({
-    map: sTex, roughness: 0.88, metalness: 0.0, color: 0xd6a876
-  });
-
-  const darkStoneTex = brickTex(512, 512, 105, 72, 45);
-  darkStoneTex.repeat.set(3, 2);
-  const darkMat = new THREE.MeshStandardMaterial({
-    map: darkStoneTex, roughness: 0.95, metalness: 0.0, color: 0xb08862
-  });
-
-  const slabTex = stoneTex(512, 512);
-  slabTex.repeat.set(3, 2);
-  const slabMat = new THREE.MeshStandardMaterial({
-    map: slabTex, roughness: 0.7, metalness: 0.0, color: 0xe0ccaa
-  });
-
-  const ironMat = new THREE.MeshStandardMaterial({
-    color: 0x2c1c0c, roughness: 0.88, metalness: 0.06
-  });
-
-  const interiorMat = new THREE.MeshStandardMaterial({
-    color: 0x080402, roughness: 1.0, metalness: 0
-  });
-
-  /* ── GEOMETRY ── */
-  const group = new THREE.Group();
-  scene.add(group);
-
-  // --- Stone base / stand ---
-  // Main body
-  const baseGeo = new THREE.BoxGeometry(3.8, 1.7, 2.7);
-  const baseMesh = new THREE.Mesh(baseGeo, brickMat);
-  baseMesh.position.y = -0.85;
-  baseMesh.castShadow = true;
-  baseMesh.receiveShadow = true;
-  group.add(baseMesh);
-
-  // Counter slab on top of base
-  const slabGeo = new THREE.BoxGeometry(4.0, 0.14, 2.9);
-  const slabMesh = new THREE.Mesh(slabGeo, slabMat);
-  slabMesh.position.y = 0.07;
-  slabMesh.castShadow = true;
-  slabMesh.receiveShadow = true;
-  group.add(slabMesh);
-
-  // Slab edge trim
-  const trimGeo = new THREE.BoxGeometry(4.04, 0.08, 2.94);
-  const trimMesh = new THREE.Mesh(trimGeo, ironMat);
-  trimMesh.position.y = -0.0;
-  group.add(trimMesh);
-
-  // --- Dome (hemisphere) ---
-  const domeR = 1.48;
-  const domeGeo = new THREE.SphereGeometry(domeR, 80, 40, 0, Math.PI*2, 0, Math.PI/2);
-  const domeMesh = new THREE.Mesh(domeGeo, domeMat);
-  domeMesh.position.y = 0.14;
-  domeMesh.castShadow = true;
-  domeMesh.receiveShadow = true;
-  group.add(domeMesh);
-
-  // Dome base ring (iron band)
-  const ringGeo = new THREE.TorusGeometry(domeR, 0.065, 10, 80);
-  const ringMesh = new THREE.Mesh(ringGeo, ironMat);
-  ringMesh.rotation.x = Math.PI/2;
-  ringMesh.position.y = 0.14;
-  ringMesh.castShadow = true;
-  group.add(ringMesh);
-
-  // --- Arch opening ---
-  // Outer arch frame shape (with hole)
-  function makeArch(outerW, outerH, innerW, innerH){
-    const shape = new THREE.Shape();
-    const cy = innerH * 0.52;
-    // Outer profile
-    shape.moveTo(-outerW, -0.02);
-    shape.lineTo(-outerW, cy);
-    shape.absarc(0, cy, outerW, Math.PI, 0, true);
-    shape.lineTo(outerW, -0.02);
-    shape.closePath();
-    // Inner hole
-    const hole = new THREE.Path();
-    hole.moveTo(-innerW, 0);
-    hole.lineTo(-innerW, cy);
-    hole.absarc(0, cy, innerW, Math.PI, 0, true);
-    hole.lineTo(innerW, 0);
-    hole.closePath();
-    shape.holes.push(hole);
-    return shape;
-  }
-
-  const aW = 0.64, aH = 0.88;
-  const archShape = makeArch(aW+0.1, aH+0.08, aW, aH);
-  const archFrameGeo = new THREE.ExtrudeGeometry(archShape, {
-    depth: 0.14, bevelEnabled: true, bevelThickness: 0.015, bevelSize: 0.012, bevelSegments: 2
-  });
-  const archFrame = new THREE.Mesh(archFrameGeo, darkMat);
-  archFrame.position.set(0, 0.14, domeR - 0.06);
-  archFrame.rotation.y = Math.PI;
-  archFrame.castShadow = true;
-  group.add(archFrame);
-
-  // Interior backing — dark disc inside arch
-  function archOnlyShape(w, h){
-    const s = new THREE.Shape();
-    const cy = h*0.52;
-    s.moveTo(-w, 0); s.lineTo(-w, cy);
-    s.absarc(0, cy, w, Math.PI, 0, true);
-    s.lineTo(w, 0); s.closePath();
-    return s;
-  }
-  const archInteriorGeo = new THREE.ShapeGeometry(archOnlyShape(aW, aH));
-  const archInterior = new THREE.Mesh(archInteriorGeo, interiorMat);
-  archInterior.position.set(0, 0.14, domeR - 0.18);
-  archInterior.rotation.y = Math.PI;
-  group.add(archInterior);
-
-  // Interior depth backing (further in)
-  const archBackGeo = new THREE.ShapeGeometry(archOnlyShape(aW*0.82, aH*0.8));
-  const archBack = new THREE.Mesh(archBackGeo, interiorMat);
-  archBack.position.set(0, 0.18, domeR - 0.82);
-  archBack.rotation.y = Math.PI;
-  group.add(archBack);
-
-  // --- Chimney ---
-  const chimBase = new THREE.CylinderGeometry(0.095, 0.115, 0.42, 14);
-  const chimMesh = new THREE.Mesh(chimBase, ironMat);
-  chimMesh.position.set(0.46, 0.14 + domeR + 0.05, -0.28);
-  chimMesh.castShadow = true;
-  group.add(chimMesh);
-
-  // Chimney cap
-  const capGeo = new THREE.CylinderGeometry(0.13, 0.095, 0.065, 14);
-  const capMesh = new THREE.Mesh(capGeo, ironMat);
-  capMesh.position.set(0.46, 0.14 + domeR + 0.28, -0.28);
-  group.add(capMesh);
-
-  // --- Ground shadow receiver ---
-  const groundGeo = new THREE.PlaneGeometry(40, 40);
-  const groundMat2 = new THREE.ShadowMaterial({ opacity: 0.10 });
-  const groundMesh = new THREE.Mesh(groundGeo, groundMat2);
-  groundMesh.rotation.x = -Math.PI/2;
-  groundMesh.position.y = -1.73;
-  groundMesh.receiveShadow = true;
-  scene.add(groundMesh);
-
-  /* ── INTERACTION ── */
-  let autoRotate = true;
-  let targetY = 0, currentY = 0;
-  let mouseX = 0, mouseY = 0;
-
-  wrap.addEventListener('mouseenter', () => { autoRotate = false; });
-  wrap.addEventListener('mouseleave', () => { autoRotate = true; });
-
-  document.addEventListener('mousemove', e => {
-    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-    mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-  });
-
-  /* ── RENDER LOOP ── */
-  function animate(){
-    requestAnimationFrame(animate);
-    if(autoRotate){
-      group.rotation.y += 0.0038;
-    } else {
-      targetY = mouseX * 0.9;
-      group.rotation.y += (targetY - group.rotation.y) * 0.055;
-      group.rotation.x += (-mouseY * 0.12 - group.rotation.x) * 0.055;
-    }
-    renderer.render(scene, camera);
-  }
-  animate();
-
-  /* ── RESIZE ── */
-  const ro = new ResizeObserver(() => {
-    renderer.setSize(W(), H());
-    camera.aspect = W() / H();
-    camera.updateProjectionMatrix();
-  });
-  ro.observe(wrap);
-})();
-
-/* ── SCROLL REVEAL ── */
-const revEls = document.querySelectorAll('.rev');
-new IntersectionObserver((entries) => {
+/* Scroll reveal */
+const revEls = document.querySelectorAll('.r');
+const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if(e.isIntersecting){ e.target.classList.add('in'); }
+    if(e.isIntersecting){
+      e.target.classList.add('show');
+      io.unobserve(e.target);
+    }
   });
-}, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' }).observe
-? (() => {
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); } });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  revEls.forEach(el => io.observe(el));
-})() : revEls.forEach(el => el.classList.add('in'));
+}, { threshold: 0.1, rootMargin: '0px 0px -48px 0px' });
+revEls.forEach(el => io.observe(el));
 </script>
 </body>
 </html>
