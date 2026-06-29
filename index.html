@@ -10,8 +10,7 @@
 <meta name="description" content="Italian-crafted outdoor kitchens and wood-fired ovens. 3D designed, hand-built across Louth, Meath, Dundalk & North Dublin.">
 <script>
 if('scrollRestoration' in history) history.scrollRestoration='manual';
-document.documentElement.style.overflow='hidden';
-document.documentElement.scrollTop=0;
+document.documentElement.setAttribute('data-lock','');
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +18,8 @@ document.documentElement.scrollTop=0;
 <style>
 /* ───────── RESET & BASE ───────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;font-size:16px}
+html{font-size:16px}
+html[data-lock]{overflow:hidden!important;position:fixed;width:100%;top:0}
 body{font-family:'Inter',sans-serif;background:#fff;color:#1a1a1a;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{display:block;width:100%;object-fit:cover}
 a{text-decoration:none;color:inherit}
@@ -1902,11 +1902,11 @@ function scrollTop(){
   window.scrollTo(0,0);
   document.documentElement.scrollTop=0;
   document.body.scrollTop=0;
-  document.documentElement.style.overflow='';
+  document.documentElement.removeAttribute('data-lock');
 }
 window.addEventListener('load',()=>requestAnimationFrame(()=>requestAnimationFrame(scrollTop)));
-window.addEventListener('pageshow',e=>{
-  document.documentElement.style.overflow='hidden';
+window.addEventListener('pageshow',()=>{
+  document.documentElement.setAttribute('data-lock','');
   requestAnimationFrame(()=>requestAnimationFrame(scrollTop));
 });
 
