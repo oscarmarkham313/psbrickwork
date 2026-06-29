@@ -476,6 +476,104 @@ footer p{font-size:.75rem;color:rgba(255,255,255,.25)}
 .footer-links a{font-size:.75rem;color:rgba(255,255,255,.28);transition:color .2s}
 .footer-links a:hover{color:rgba(255,255,255,.7)}
 
+/* ───────── PORTFOLIO GALLERY ───────── */
+.gallery{background:var(--ink)}
+.gallery-head{text-align:center;max-width:580px;margin:0 auto 3.5rem}
+.gallery-head .section-h2{color:#fff}
+.gallery-head .section-sub{color:rgba(255,255,255,.5);margin:.8rem auto 0}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  grid-template-rows:auto auto;
+  gap:1rem;
+}
+.gallery-item{
+  border-radius:14px;overflow:hidden;position:relative;
+  transition:transform .4s var(--ease);
+  background:#111;
+}
+.gallery-item:hover{transform:scale(1.02)}
+.gallery-item img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .6s var(--ease);display:block;
+  filter:brightness(.8);
+}
+.gallery-item:hover img{transform:scale(1.06);filter:brightness(.95)}
+.gallery-item.tall{grid-row:span 2}
+.gallery-item.wide{grid-column:span 2}
+.gi-caption{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:1.1rem 1.2rem;
+  background:linear-gradient(to top,rgba(0,0,0,.75),transparent);
+  color:rgba(255,255,255,.75);font-size:.75rem;font-weight:500;
+  letter-spacing:.06em;text-transform:uppercase;
+}
+
+/* ───────── TESTIMONIALS ───────── */
+.testimonials{background:var(--cream)}
+.testi-head{text-align:center;max-width:540px;margin:0 auto 3.5rem}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.testi-card{
+  background:#fff;border-radius:18px;
+  padding:2.2rem 2rem;
+  border:1px solid rgba(0,0,0,.06);
+  display:flex;flex-direction:column;
+  transition:box-shadow .3s,transform .3s;
+}
+.testi-card:hover{box-shadow:0 16px 48px rgba(0,0,0,.1);transform:translateY(-5px)}
+.testi-stars{
+  display:flex;gap:3px;margin-bottom:1.2rem;
+  font-size:1rem;color:#f5a623;
+}
+.testi-quote{
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem;font-style:italic;
+  line-height:1.65;color:#2a2a2a;
+  flex:1;margin-bottom:1.5rem;
+}
+.testi-author{
+  display:flex;align-items:center;gap:.85rem;
+  border-top:1px solid rgba(0,0,0,.07);padding-top:1.2rem;
+}
+.testi-avatar{
+  width:42px;height:42px;border-radius:50%;
+  background:linear-gradient(135deg,var(--orange),var(--orange-dark));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;
+  font-weight:700;font-size:1rem;color:#fff;flex-shrink:0;
+}
+.testi-name{font-size:.88rem;font-weight:700;color:#1a1a1a}
+.testi-loc{font-size:.75rem;color:#999;margin-top:.15rem}
+
+/* ───────── FAQ ───────── */
+.faq{background:#fff}
+.faq-inner{display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;align-items:start}
+.faq-list{border-top:1px solid rgba(0,0,0,.1)}
+.faq-item{border-bottom:1px solid rgba(0,0,0,.1)}
+.faq-q{
+  width:100%;text-align:left;
+  background:none;border:none;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.5rem 0;gap:1rem;
+  font-size:.97rem;font-weight:600;color:#1a1a1a;
+  transition:color .2s;
+}
+.faq-q:hover{color:var(--orange)}
+.faq-icon{
+  width:26px;height:26px;border-radius:50%;
+  border:1.5px solid rgba(0,0,0,.2);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-size:.85rem;
+  transition:background .25s,border-color .25s,transform .3s;
+}
+.faq-item.open .faq-icon{background:var(--orange);border-color:var(--orange);transform:rotate(45deg);color:#fff}
+.faq-a{
+  max-height:0;overflow:hidden;
+  transition:max-height .4s var(--ease), padding .3s;
+  font-size:.88rem;color:#666;line-height:1.7;font-weight:300;
+}
+.faq-item.open .faq-a{max-height:200px;padding-bottom:1.4rem}
+
 /* ───────── KEYFRAMES ───────── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeDown{from{opacity:0;transform:translate(-50%,-16px)}to{opacity:1;transform:translate(-50%,0)}}
@@ -496,6 +594,11 @@ footer p{font-size:.75rem;color:rgba(255,255,255,.25)}
   .hero-cards{flex-direction:column;align-items:center}
   .glass-card-stats{min-width:0;width:100%;max-width:360px}
   footer{flex-direction:column;text-align:center}
+  .gallery-grid{grid-template-columns:1fr 1fr}
+  .gallery-item.tall{grid-row:span 1}
+  .gallery-item.wide{grid-column:span 2}
+  .testi-grid{grid-template-columns:1fr}
+  .faq-inner{grid-template-columns:1fr;gap:2.5rem}
 }
 @media(max-width:560px){
   .fin-grid{grid-template-columns:1fr}
@@ -793,6 +896,145 @@ footer p{font-size:.75rem;color:rgba(255,255,255,.25)}
   </div>
 </section>
 
+<!-- ════ PORTFOLIO GALLERY ════ -->
+<section class="section gallery" id="portfolio">
+  <div class="wrap">
+    <div class="gallery-head r">
+      <span class="section-tag">Our Work</span>
+      <h2 class="section-h2">Recent<br><em>builds.</em></h2>
+      <p class="section-sub">Every project is unique. Here's a look at some of our recent outdoor kitchen and oven builds across Ireland.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item tall r">
+        <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=700&q=80" alt="Full outdoor kitchen build" loading="lazy">
+        <div class="gi-caption">Dundalk — Full Kitchen Suite</div>
+      </div>
+      <div class="gallery-item r" style="transition-delay:.08s">
+        <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=500" alt="Wood fired oven" loading="lazy">
+        <div class="gi-caption">Co. Louth — Mago Oven</div>
+      </div>
+      <div class="gallery-item r" style="transition-delay:.13s">
+        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80" alt="Outdoor grill station" loading="lazy">
+        <div class="gi-caption">North Dublin — Grill Station</div>
+      </div>
+      <div class="gallery-item wide r" style="transition-delay:.18s">
+        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=900&h=380&q=80" alt="Garden outdoor living area" loading="lazy">
+        <div class="gi-caption">Newry — Outdoor Living & Kitchen</div>
+      </div>
+      <div class="gallery-item r" style="transition-delay:.09s">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=500&q=80" alt="Stone wall and brickwork" loading="lazy">
+        <div class="gi-caption">Co. Meath — Stone Feature Wall</div>
+      </div>
+      <div class="gallery-item r" style="transition-delay:.14s">
+        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=500&q=80" alt="Modern outdoor kitchen" loading="lazy">
+        <div class="gi-caption">Dundalk — Bar & Countertop</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ TESTIMONIALS ════ -->
+<section class="section testimonials">
+  <div class="wrap">
+    <div class="testi-head r">
+      <span class="section-tag">What Clients Say</span>
+      <h2 class="section-h2">Built on<br><em>trust.</em></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card r" style="transition-delay:.05s">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Pietro showed us a full 3D model before a single brick was touched. We knew exactly what we were getting. The finished kitchen exceeded every expectation — it looks like something from a magazine."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">S</div>
+          <div>
+            <div class="testi-name">Siobhán & Ciarán M.</div>
+            <div class="testi-loc">Dundalk, Co. Louth</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card r" style="transition-delay:.12s">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"The Mago oven has completely changed how we entertain. Every weekend now feels like a proper occasion. Pietro was meticulous from start to finish — couldn't recommend more highly."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">D</div>
+          <div>
+            <div class="testi-name">David F.</div>
+            <div class="testi-loc">Swords, North Dublin</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card r" style="transition-delay:.19s">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"We had quotes from several builders but PS Brick.Work were the only ones who presented a full 3D design upfront. The attention to detail in the stonework is extraordinary. Worth every cent."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">R</div>
+          <div>
+            <div class="testi-name">Ruth & Paddy O'B.</div>
+            <div class="testi-loc">Navan, Co. Meath</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FAQ ════ -->
+<section class="section faq">
+  <div class="wrap">
+    <div class="faq-inner">
+      <div class="r">
+        <span class="section-tag">Common Questions</span>
+        <h2 class="section-h2">Everything<br>you need<br><em>to know.</em></h2>
+        <p class="section-sub" style="margin-top:1rem">Not sure where to start? Here are the questions we hear most often.</p>
+      </div>
+      <div class="faq-list r" style="transition-delay:.1s">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            How does the 3D design process work?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">We start with a free site visit to measure your space and understand your vision. From there we produce a full photorealistic 3D render — showing every brick, every finish, every dimension — before any work begins. You review it, we refine it, then we build exactly what you approved.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            How much does an outdoor kitchen cost?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Every build is bespoke so pricing varies by size, materials and complexity. A standalone Mago oven typically starts from €4,000. Full outdoor kitchen suites start from €8,000. We'll give you a detailed quote after the free consultation with no obligation.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            How long does a build take?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">A Mago oven build typically takes 3–5 days on site. A full outdoor kitchen suite can take 1–3 weeks depending on size and complexity. We'll give you a clear timeline during the design phase so you can plan around it.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Do your builds withstand the Irish weather?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Absolutely. All materials are specifically chosen for weather resistance. We use frost-proof tiles, sealed stone, stainless steel hardware and weather-rated plasters. Our builds are designed to look exceptional year-round — rain or shine.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            What areas do you cover?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">We currently serve Newry &amp; Dundalk, Co. Louth &amp; Meath, and North Dublin. Not sure if we cover your area? Get in touch and we'll let you know — we do occasionally take on projects outside our main service zone.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Is the consultation really free?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Yes, completely. We visit your site, measure the space, listen to your ideas and then follow up with a 3D concept. There's no charge and no obligation — we only take on projects where we're confident we can deliver something exceptional.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ════ CONTACT ════ -->
 <section class="contact" id="contact">
   <div class="contact-inner">
@@ -844,6 +1086,14 @@ document.querySelectorAll('.why-grid, .steps').forEach(grid => {
     if(!child.style.transitionDelay) child.style.transitionDelay = (i * 0.08) + 's';
   });
 });
+
+// FAQ accordion
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
 </script>
 </body>
 </html>
