@@ -60,15 +60,197 @@ a{text-decoration:none;color:inherit}
   color:rgba(255,255,255,.65);
   font-size:.78rem;font-weight:500;
   padding:.45rem .9rem;border-radius:100px;
-  transition:background .2s,color .2s;
+  transition:background .2s,color .2s;cursor:pointer;
 }
-.nav-links a:hover{background:rgba(255,255,255,.1);color:#fff}
+.nav-links a:hover,.nav-links a.active{background:rgba(255,255,255,.1);color:#fff}
 .nav-cta{
   background:var(--orange)!important;
   color:#fff!important;padding:.5rem 1.25rem!important;
   font-weight:600!important;
 }
 .nav-cta:hover{background:var(--orange-dark)!important}
+
+/* ───────── PAGE SYSTEM ───────── */
+.page{display:none}
+.page.active{display:block}
+
+/* ───────── PAGE HERO BANNER ───────── */
+.page-hero{
+  background:var(--ink);
+  position:relative;overflow:hidden;
+  padding:10rem 2rem 6rem;
+  text-align:center;
+}
+.page-hero .orb{pointer-events:none}
+.page-hero-noise{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity:.035;
+}
+.page-hero-inner{position:relative;z-index:2;max-width:700px;margin:0 auto}
+.page-hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(3rem,6vw,5.5rem);
+  font-weight:900;line-height:1;
+  color:#fff;letter-spacing:-.02em;margin-bottom:1.2rem;
+}
+.page-hero h1 em{
+  font-style:italic;
+  background:linear-gradient(135deg,var(--orange),#f0a94e,var(--orange-dark));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.page-hero p{
+  font-size:1rem;font-weight:300;
+  color:rgba(255,255,255,.55);line-height:1.7;
+}
+
+/* ───────── REVIEWS PAGE ───────── */
+.reviews-stats{
+  background:var(--cream);
+  padding:3rem 2rem;
+}
+.rs-inner{
+  max-width:900px;margin:0 auto;
+  display:flex;align-items:center;justify-content:center;gap:3rem;flex-wrap:wrap;
+  text-align:center;
+}
+.rs-big{
+  font-family:'Playfair Display',serif;
+  font-size:4rem;font-weight:900;color:var(--ink);line-height:1;
+}
+.rs-stars{color:#f5a623;font-size:1.5rem;letter-spacing:.1em;margin:.3rem 0}
+.rs-label{font-size:.8rem;color:#888;font-weight:500}
+.rs-divider{width:1px;height:60px;background:rgba(0,0,0,.12)}
+.rs-stat{text-align:center}
+.rs-stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--ink)}
+.rs-stat-label{font-size:.78rem;color:#888;margin-top:.2rem}
+
+.reviews-grid{
+  background:#fff;padding:5rem 2rem;
+}
+.rg-inner{max-width:1100px;margin:0 auto}
+.rg-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;
+  margin-top:3rem;
+}
+.review-card{
+  background:var(--cream);border-radius:18px;
+  padding:2.2rem 2rem;
+  display:flex;flex-direction:column;
+  border:1px solid rgba(0,0,0,.06);
+  transition:box-shadow .3s,transform .3s;
+}
+.review-card:hover{box-shadow:0 16px 48px rgba(0,0,0,.1);transform:translateY(-5px)}
+.rc-stars{display:flex;gap:3px;margin-bottom:1rem;font-size:.95rem;color:#f5a623}
+.rc-service{
+  display:inline-block;
+  font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--orange);margin-bottom:.9rem;
+}
+.rc-quote{
+  font-family:'Playfair Display',serif;
+  font-size:1rem;font-style:italic;
+  line-height:1.65;color:#2a2a2a;
+  flex:1;margin-bottom:1.5rem;
+}
+.rc-author{
+  display:flex;align-items:center;gap:.85rem;
+  border-top:1px solid rgba(0,0,0,.08);padding-top:1.2rem;
+}
+.rc-avatar{
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,var(--orange),var(--orange-dark));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-weight:700;font-size:.95rem;color:#fff;flex-shrink:0;
+}
+.rc-name{font-size:.86rem;font-weight:700;color:#1a1a1a}
+.rc-loc{font-size:.73rem;color:#999;margin-top:.15rem}
+
+.reviews-cta{
+  background:var(--ink);padding:6rem 2rem;text-align:center;
+  position:relative;overflow:hidden;
+}
+.reviews-cta::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 60% at 50% 80%,rgba(224,123,42,.12),transparent);
+  pointer-events:none;
+}
+.reviews-cta-inner{position:relative;z-index:1;max-width:600px;margin:0 auto}
+.reviews-cta h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.5rem,5vw,4.5rem);font-weight:900;font-style:italic;
+  color:#fff;line-height:.95;margin-bottom:1rem;
+}
+.reviews-cta p{font-size:.95rem;color:rgba(255,255,255,.5);margin-bottom:2rem;font-weight:300}
+
+/* ───────── CONTACT PAGE ───────── */
+.contact-page{background:#fff;padding:5rem 2rem}
+.cp-inner{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:1.1fr 1fr;gap:5rem;align-items:start;
+}
+.cp-form-wrap .section-tag{margin-bottom:.7rem;display:block}
+.cp-form-wrap h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,4vw,3rem);font-weight:900;
+  line-height:1.05;letter-spacing:-.02em;margin-bottom:.6rem;
+}
+.cp-form-wrap h2 em{font-style:italic;color:var(--orange)}
+.cp-form-wrap > p{
+  font-size:.9rem;color:#666;font-weight:300;line-height:1.7;margin-bottom:2rem;
+}
+.contact-form{display:flex;flex-direction:column;gap:1rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-group{display:flex;flex-direction:column;gap:.4rem}
+.form-group label{font-size:.75rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#555}
+.form-group input,
+.form-group select,
+.form-group textarea{
+  padding:.9rem 1.1rem;
+  border:1.5px solid rgba(0,0,0,.12);
+  border-radius:10px;
+  font-family:'Inter',sans-serif;font-size:.9rem;color:#1a1a1a;
+  background:#fff;
+  transition:border-color .2s,box-shadow .2s;
+  outline:none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+  border-color:var(--orange);
+  box-shadow:0 0 0 3px rgba(224,123,42,.12);
+}
+.form-group textarea{resize:vertical;min-height:130px}
+.form-group select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center}
+.form-submit{
+  background:var(--orange);color:#fff;
+  border:none;border-radius:100px;
+  padding:1rem 2.5rem;font-size:.9rem;font-weight:600;
+  cursor:pointer;transition:background .2s,transform .2s,box-shadow .2s;
+  box-shadow:0 0 30px rgba(224,123,42,.3);
+  align-self:flex-start;margin-top:.5rem;
+}
+.form-submit:hover{background:var(--orange-dark);transform:translateY(-2px);box-shadow:0 0 40px rgba(224,123,42,.45)}
+.form-note{font-size:.75rem;color:#aaa;margin-top:.5rem}
+
+.cp-details{padding-top:.5rem}
+.cp-detail-card{
+  background:var(--cream);border-radius:16px;
+  padding:1.8rem;margin-bottom:1.2rem;
+  border:1px solid rgba(0,0,0,.06);
+  transition:box-shadow .25s;
+}
+.cp-detail-card:hover{box-shadow:0 8px 28px rgba(0,0,0,.08)}
+.cd-icon{font-size:1.3rem;margin-bottom:.7rem}
+.cd-label{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:.35rem}
+.cd-val{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:#1a1a1a}
+.cd-sub{font-size:.8rem;color:#888;margin-top:.25rem;font-weight:300}
+.cp-hours{margin-top:1.5rem}
+.cp-hours h4{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#888;margin-bottom:.9rem}
+.hours-row{display:flex;justify-content:space-between;align-items:center;padding:.6rem 0;border-bottom:1px solid rgba(0,0,0,.07);font-size:.86rem}
+.hours-row:last-child{border-bottom:none}
+.hours-row .day{font-weight:500;color:#1a1a1a}
+.hours-row .time{color:#666;font-weight:300}
 
 /* ───────── HERO ───────── */
 .hero{
@@ -601,10 +783,16 @@ footer p{font-size:.75rem;color:rgba(255,255,255,.25)}
   .testi-grid{grid-template-columns:1fr}
   .faq-inner{grid-template-columns:1fr;gap:2.5rem}
 }
+@media(max-width:960px){
+  .rg-grid{grid-template-columns:1fr}
+  .cp-inner{grid-template-columns:1fr;gap:3rem}
+}
 @media(max-width:560px){
   .fin-grid{grid-template-columns:1fr}
   .steps{grid-template-columns:1fr}
   .hours-mini{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .rg-grid{grid-template-columns:1fr}
   .hour-cell{border-bottom:1px solid rgba(0,0,0,.06)}
   .hero-h1{font-size:clamp(2.6rem,12vw,4rem)}
   .contact-links{max-width:100%}
@@ -620,13 +808,17 @@ footer p{font-size:.75rem;color:rgba(255,255,255,.25)}
     <div class="nav-logo-text">PS Brick.Work</div>
   </div>
   <div class="nav-links">
-    <a href="#services">Services</a>
-    <a href="#mago">The Mago</a>
-    <a href="#finishes">Finishes</a>
-    <a href="#service-area">Area</a>
-    <a href="#contact" class="nav-cta">Get a Quote</a>
+    <a onclick="showPage('home')" class="active" id="nav-home">Home</a>
+    <a onclick="showPage('reviews')" id="nav-reviews">Reviews</a>
+    <a onclick="showPage('contact')" id="nav-contact">Contact</a>
+    <a onclick="showPage('contact')" class="nav-cta">Get a Quote</a>
   </div>
 </nav>
+
+<!-- ════════════════════════════════
+     PAGE: HOME
+════════════════════════════════ -->
+<div class="page active" id="page-home">
 
 <!-- ════ GLASSMORPHISM HERO ════ -->
 <section class="hero">
@@ -1025,6 +1217,230 @@ footer p{font-size:.75rem;color:rgba(255,255,255,.25)}
   </div>
 </section>
 
+</div><!-- /page-home -->
+
+
+<!-- ════════════════════════════════
+     PAGE: REVIEWS
+════════════════════════════════ -->
+<div class="page" id="page-reviews">
+
+  <!-- Banner -->
+  <div class="page-hero">
+    <div class="orb" style="width:600px;height:600px;top:-150px;right:-100px;background:radial-gradient(circle,rgba(224,123,42,.28),transparent 70%);filter:blur(80px)"></div>
+    <div class="orb" style="width:450px;height:450px;bottom:-100px;left:-80px;background:radial-gradient(circle,rgba(180,55,20,.22),transparent 70%);filter:blur(80px)"></div>
+    <div class="page-hero-noise"></div>
+    <div class="page-hero-inner">
+      <span class="section-tag" style="display:block;text-align:center;margin-bottom:1rem">Client Reviews</span>
+      <h1>What our<br>clients <em>say.</em></h1>
+      <p style="margin-top:1rem">Every build is personal. Here's what the people we've worked with have to say about the experience and the result.</p>
+    </div>
+  </div>
+
+  <!-- Rating overview -->
+  <div class="reviews-stats">
+    <div class="rs-inner">
+      <div>
+        <div class="rs-big">5.0</div>
+        <div class="rs-stars">★★★★★</div>
+        <div class="rs-label">Average Rating</div>
+      </div>
+      <div class="rs-divider"></div>
+      <div class="rs-stat"><div class="rs-stat-num">12+</div><div class="rs-stat-label">Happy Clients</div></div>
+      <div class="rs-divider"></div>
+      <div class="rs-stat"><div class="rs-stat-num">100%</div><div class="rs-stat-label">Recommend Us</div></div>
+      <div class="rs-divider"></div>
+      <div class="rs-stat"><div class="rs-stat-num">3</div><div class="rs-stat-label">Counties Served</div></div>
+    </div>
+  </div>
+
+  <!-- Reviews grid -->
+  <div class="reviews-grid">
+    <div class="rg-inner">
+      <div style="text-align:center" class="r">
+        <span class="section-tag">All Reviews</span>
+        <h2 class="section-h2">Built on <em>trust.</em></h2>
+      </div>
+      <div class="rg-grid">
+
+        <div class="review-card r" style="transition-delay:.05s">
+          <div class="rc-stars">★★★★★</div>
+          <div class="rc-service">Outdoor Kitchen</div>
+          <p class="rc-quote">"Pietro showed us a full 3D model before a single brick was touched. We knew exactly what we were getting. The finished kitchen exceeded every expectation — it looks like something from a magazine."</p>
+          <div class="rc-author">
+            <div class="rc-avatar">S</div>
+            <div><div class="rc-name">Siobhán & Ciarán M.</div><div class="rc-loc">Dundalk, Co. Louth</div></div>
+          </div>
+        </div>
+
+        <div class="review-card r" style="transition-delay:.1s">
+          <div class="rc-stars">★★★★★</div>
+          <div class="rc-service">The Mago Wood-Fired Oven</div>
+          <p class="rc-quote">"The Mago oven has completely changed how we entertain. Every weekend now feels like a proper occasion. Pietro was meticulous from start to finish — couldn't recommend more highly."</p>
+          <div class="rc-author">
+            <div class="rc-avatar">D</div>
+            <div><div class="rc-name">David F.</div><div class="rc-loc">Swords, North Dublin</div></div>
+          </div>
+        </div>
+
+        <div class="review-card r" style="transition-delay:.15s">
+          <div class="rc-stars">★★★★★</div>
+          <div class="rc-service">Stone & Brickwork</div>
+          <p class="rc-quote">"We had quotes from several builders but PS Brick.Work were the only ones who presented a full 3D design upfront. The attention to detail in the stonework is extraordinary. Worth every cent."</p>
+          <div class="rc-author">
+            <div class="rc-avatar">R</div>
+            <div><div class="rc-name">Ruth & Paddy O'B.</div><div class="rc-loc">Navan, Co. Meath</div></div>
+          </div>
+        </div>
+
+        <div class="review-card r" style="transition-delay:.08s">
+          <div class="rc-stars">★★★★★</div>
+          <div class="rc-service">Outdoor Kitchen & Oven</div>
+          <p class="rc-quote">"Absolutely stunning result. We wanted something that would last and Pietro delivered. The level of craftsmanship is unlike anything I've seen from an Irish tradesperson. Truly Italian quality."</p>
+          <div class="rc-author">
+            <div class="rc-avatar">C</div>
+            <div><div class="rc-name">Colm & Aoife T.</div><div class="rc-loc">Drogheda, Co. Louth</div></div>
+          </div>
+        </div>
+
+        <div class="review-card r" style="transition-delay:.13s">
+          <div class="rc-stars">★★★★★</div>
+          <div class="rc-service">The Mago Wood-Fired Oven</div>
+          <p class="rc-quote">"From the first consultation to the finished oven, the whole process was seamless. Pietro listened to exactly what we wanted and delivered something even better. Our garden is transformed."</p>
+          <div class="rc-author">
+            <div class="rc-avatar">F</div>
+            <div><div class="rc-name">Fionnuala & Seán B.</div><div class="rc-loc">Newry, Co. Down</div></div>
+          </div>
+        </div>
+
+        <div class="review-card r" style="transition-delay:.18s">
+          <div class="rc-stars">★★★★★</div>
+          <div class="rc-service">3D Design & Outdoor Kitchen</div>
+          <p class="rc-quote">"The 3D design stage alone was worth it — being able to see exactly what we were getting before any work started gave us total confidence. The final build is incredible. Already planning an oven."</p>
+          <div class="rc-author">
+            <div class="rc-avatar">M</div>
+            <div><div class="rc-name">Michael & Karen D.</div><div class="rc-loc">Laytown, Co. Meath</div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="reviews-cta">
+    <div class="reviews-cta-inner r">
+      <h2>Ready to be<br>next?</h2>
+      <p>Free consultation. Free 3D design. No obligation.</p>
+      <a onclick="showPage('contact')" class="btn btn-orange" style="cursor:pointer;display:inline-flex">Start Your Build</a>
+    </div>
+  </div>
+
+</div><!-- /page-reviews -->
+
+
+<!-- ════════════════════════════════
+     PAGE: CONTACT
+════════════════════════════════ -->
+<div class="page" id="page-contact">
+
+  <!-- Banner -->
+  <div class="page-hero">
+    <div class="orb" style="width:600px;height:600px;top:-150px;right:-100px;background:radial-gradient(circle,rgba(224,123,42,.28),transparent 70%);filter:blur(80px)"></div>
+    <div class="orb" style="width:450px;height:450px;bottom:-100px;left:-80px;background:radial-gradient(circle,rgba(180,55,20,.22),transparent 70%);filter:blur(80px)"></div>
+    <div class="page-hero-noise"></div>
+    <div class="page-hero-inner">
+      <span class="section-tag" style="display:block;text-align:center;margin-bottom:1rem">Get In Touch</span>
+      <h1>Let's build<br>something <em>great.</em></h1>
+      <p style="margin-top:1rem">Tell us about your space. Free site visit, free 3D design, no obligation.</p>
+    </div>
+  </div>
+
+  <!-- Form + details -->
+  <div class="contact-page">
+    <div class="cp-inner">
+
+      <!-- Form -->
+      <div class="cp-form-wrap r">
+        <span class="section-tag">Send a Message</span>
+        <h2>Start your<br><em>project.</em></h2>
+        <p>Fill in the form and Pietro will get back to you within one business day to arrange a free consultation.</p>
+        <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="contact">
+          <input type="hidden" name="bot-field" style="display:none">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="first_name" placeholder="Seán" required>
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="last_name" placeholder="Murphy" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="sean@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="+353 87 000 0000">
+          </div>
+          <div class="form-group">
+            <label for="service">I'm Interested In</label>
+            <select id="service" name="service" required>
+              <option value="" disabled selected>Select a service…</option>
+              <option>Outdoor Kitchen</option>
+              <option>The Mago Wood-Fired Oven</option>
+              <option>Stone & Brickwork</option>
+              <option>3D Design Service</option>
+              <option>Full Kitchen + Oven Package</option>
+              <option>Not sure yet — need advice</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Tell Us About Your Project</label>
+            <textarea id="message" name="message" placeholder="Describe your space, what you have in mind, any rough dimensions or timelines…" required></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send Message →</button>
+          <p class="form-note">We typically respond within one business day.</p>
+        </form>
+      </div>
+
+      <!-- Details -->
+      <div class="cp-details r" style="transition-delay:.15s">
+        <div class="cp-detail-card">
+          <div class="cd-icon">📞</div>
+          <div class="cd-label">Call Pietro directly</div>
+          <div class="cd-val"><a href="tel:+393780010333">+39 378-001-0333</a></div>
+          <div class="cd-sub">Mon–Fri 8am–4:30pm · Sat 10am–2pm</div>
+        </div>
+        <div class="cp-detail-card">
+          <div class="cd-icon">✉️</div>
+          <div class="cd-label">Email</div>
+          <div class="cd-val"><a href="mailto:pietro@psbrick.work">pietro@psbrick.work</a></div>
+          <div class="cd-sub">We reply within one business day</div>
+        </div>
+        <div class="cp-detail-card">
+          <div class="cd-icon">📍</div>
+          <div class="cd-label">Service Area</div>
+          <div class="cd-val" style="font-size:1rem;line-height:1.7">Newry &amp; Dundalk<br>Co. Louth &amp; Meath<br>North Dublin</div>
+          <div class="cd-sub">Free site visit anywhere in our area</div>
+        </div>
+        <div class="cp-hours">
+          <h4>Opening Hours</h4>
+          <div class="hours-row"><span class="day">Monday – Friday</span><span class="time">8:00am – 4:30pm</span></div>
+          <div class="hours-row"><span class="day">Saturday</span><span class="time">10:00am – 2:00pm</span></div>
+          <div class="hours-row"><span class="day">Sunday</span><span class="time" style="color:#bbb">Closed</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /page-contact -->
+
+
 <!-- ════ FOOTER ════ -->
 <footer>
   <div class="footer-logo">PS<span>·</span>Brick.Work</div>
@@ -1039,6 +1455,17 @@ footer p{font-size:.75rem;color:rgba(255,255,255,.25)}
 
 <script>
 window.addEventListener('load', () => window.scrollTo(0, 0));
+
+// Page switching
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  window.scrollTo(0, 0);
+  ['home','reviews','contact'].forEach(n => {
+    const el = document.getElementById('nav-' + n);
+    if (el) el.classList.toggle('active', n === name);
+  });
+}
 
 // Scroll reveal
 const io = new IntersectionObserver(entries => {
