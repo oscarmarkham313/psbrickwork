@@ -10,8 +10,8 @@
 <meta name="description" content="Italian-crafted outdoor kitchens and wood-fired ovens. 3D designed, hand-built across Louth, Meath, Dundalk & North Dublin.">
 <script>
 if('scrollRestoration' in history) history.scrollRestoration='manual';
+document.documentElement.style.overflow='hidden';
 document.documentElement.scrollTop=0;
-document.body&&(document.body.scrollTop=0);
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1000,7 +1000,7 @@ footer p{font-size:.75rem;color:rgba(255,255,255,.25)}
 
 <!-- ════ GLASSMORPHISM NAV ════ -->
 <nav class="nav">
-  <div class="nav-logo">
+  <div class="nav-logo" onclick="showPage('home')" style="cursor:pointer">
     <div class="nav-logo-icon">PS</div>
     <div class="nav-logo-text">PS Brick.Work</div>
   </div>
@@ -1898,9 +1898,17 @@ footer p{font-size:.75rem;color:rgba(255,255,255,.25)}
 </footer>
 
 <script>
-function scrollTop(){window.scrollTo(0,0);document.documentElement.scrollTop=0;document.body.scrollTop=0;}
-window.addEventListener('load',()=>requestAnimationFrame(scrollTop));
-window.addEventListener('pageshow',e=>{if(e.persisted||performance.navigation?.type===2)scrollTop();});
+function scrollTop(){
+  window.scrollTo(0,0);
+  document.documentElement.scrollTop=0;
+  document.body.scrollTop=0;
+  document.documentElement.style.overflow='';
+}
+window.addEventListener('load',()=>requestAnimationFrame(()=>requestAnimationFrame(scrollTop)));
+window.addEventListener('pageshow',e=>{
+  document.documentElement.style.overflow='hidden';
+  requestAnimationFrame(()=>requestAnimationFrame(scrollTop));
+});
 
 // Page switching
 function showPage(name) {
