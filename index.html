@@ -764,11 +764,201 @@ footer p{font-size:.75rem;color:rgba(255,255,255,.25)}
 }
 .faq-item.open .faq-a{max-height:200px;padding-bottom:1.4rem}
 
+/* ───────── MOBILE NAV ───────── */
+.nav-burger{
+  display:none;background:none;
+  border:1px solid rgba(255,255,255,.2);color:#fff;
+  border-radius:8px;padding:.4rem .65rem;font-size:1.2rem;
+  cursor:pointer;line-height:1;
+}
+.nav-mobile{
+  display:none;flex-direction:column;gap:.25rem;
+  position:fixed;top:5.5rem;left:1rem;right:1rem;
+  background:rgba(10,8,22,.97);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border:1px solid rgba(255,255,255,.12);border-radius:16px;
+  padding:.75rem;z-index:600;
+}
+.nav-mobile.open{display:flex}
+.nav-mobile a{
+  color:rgba(255,255,255,.7);font-size:.95rem;font-weight:500;
+  padding:.9rem 1.2rem;border-radius:10px;cursor:pointer;
+  transition:background .2s,color .2s;
+}
+.nav-mobile a:hover,.nav-mobile a.active{background:rgba(255,255,255,.08);color:#fff}
+.nav-mobile-cta{
+  background:var(--orange)!important;color:#fff!important;
+  text-align:center;font-weight:600!important;margin-top:.25rem;
+}
+.nav-mobile-cta:hover{background:var(--orange-dark)!important}
+
+/* ───────── MAGO CONFIGURATOR ───────── */
+.mago-config{padding:4.5rem 2rem 6rem;background:#fff}
+.mc-inner{max-width:1020px;margin:0 auto}
+.config-steps{
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:4rem;
+}
+.cs-step{
+  display:flex;flex-direction:column;align-items:center;gap:.45rem;
+  flex:1;max-width:160px;position:relative;
+}
+.cs-step::after{
+  content:'';position:absolute;top:17px;
+  left:calc(50% + 20px);right:calc(-50% + 20px);
+  height:1px;background:rgba(0,0,0,.12);
+}
+.cs-step:last-child::after{display:none}
+.cs-num{
+  width:34px;height:34px;border-radius:50%;
+  border:2px solid rgba(0,0,0,.12);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.78rem;font-weight:700;color:#bbb;
+  background:#fff;position:relative;z-index:1;
+  transition:all .35s var(--ease);
+}
+.cs-label{font-size:.67rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#ccc;transition:color .3s}
+.cs-step.active .cs-num{background:var(--orange);border-color:var(--orange);color:#fff;box-shadow:0 0 0 4px rgba(224,123,42,.15)}
+.cs-step.active .cs-label{color:var(--orange)}
+.cs-step.done .cs-num{background:var(--ink);border-color:var(--ink);color:#fff}
+.cs-step.done .cs-label{color:var(--ink)}
+.cs-step.done::after{background:var(--ink)}
+
+.config-panel{display:none}
+.config-panel.active{display:block}
+.config-panel>h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,3vw,2.6rem);font-weight:900;
+  letter-spacing:-.02em;margin-bottom:.4rem;
+}
+.config-panel>h2 em{font-style:italic;color:var(--orange)}
+.config-panel>.config-sub{font-size:.9rem;color:#999;margin-bottom:2.5rem;font-weight:300}
+
+.config-layout{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+
+.config-options{display:flex;flex-direction:column;gap:.8rem}
+.config-opt{
+  border:2px solid rgba(0,0,0,.09);border-radius:14px;
+  padding:1.1rem 1.3rem;cursor:pointer;
+  display:flex;align-items:center;gap:1rem;
+  transition:border-color .2s,background .2s,box-shadow .2s;
+}
+.config-opt:hover{border-color:rgba(224,123,42,.3);background:rgba(224,123,42,.03)}
+.config-opt.selected{border-color:var(--orange);background:rgba(224,123,42,.05);box-shadow:0 0 0 1px var(--orange)}
+.co-icon{font-size:1.6rem;flex-shrink:0}
+.co-name{font-size:.92rem;font-weight:700;margin-bottom:.18rem}
+.co-desc{font-size:.76rem;color:#aaa;font-weight:300}
+.co-check{
+  width:20px;height:20px;border-radius:50%;border:2px solid rgba(0,0,0,.12);
+  margin-left:auto;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.65rem;color:#fff;transition:all .2s;
+}
+.config-opt.selected .co-check{background:var(--orange);border-color:var(--orange)}
+.config-opt.selected .co-check::after{content:'✓'}
+
+/* Oven visual panel */
+.oven-panel{
+  background:var(--ink);border-radius:20px;
+  padding:2.2rem 2rem;
+  display:flex;flex-direction:column;align-items:center;
+  position:sticky;top:7rem;
+  box-shadow:0 20px 60px rgba(0,0,0,.2);
+}
+.oven-panel-label{
+  font-size:.65rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(255,255,255,.35);margin-bottom:1.5rem;
+}
+#oven-svg{width:100%;max-width:240px}
+.oven-tags{
+  display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center;margin-top:1.5rem;
+}
+.oven-tag{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);
+  border-radius:100px;font-size:.66rem;font-weight:600;
+  color:rgba(255,255,255,.4);padding:.3rem .85rem;transition:all .3s;
+}
+.oven-tag.set{background:rgba(224,123,42,.18);border-color:rgba(224,123,42,.4);color:var(--orange)}
+
+/* Extras */
+.extras-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.extra-opt{
+  border:2px solid rgba(0,0,0,.09);border-radius:12px;
+  padding:1rem;cursor:pointer;
+  display:flex;align-items:flex-start;gap:.7rem;
+  transition:border-color .2s,background .2s;
+}
+.extra-opt:hover{border-color:rgba(224,123,42,.3);background:rgba(224,123,42,.03)}
+.extra-opt.selected{border-color:var(--orange);background:rgba(224,123,42,.05)}
+.extra-checkbox{
+  width:18px;height:18px;border-radius:5px;
+  border:2px solid rgba(0,0,0,.12);flex-shrink:0;margin-top:2px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.62rem;color:#fff;transition:all .2s;
+}
+.extra-opt.selected .extra-checkbox{background:var(--orange);border-color:var(--orange)}
+.extra-opt.selected .extra-checkbox::after{content:'✓'}
+.extra-name{font-size:.84rem;font-weight:700;margin-bottom:.15rem}
+.extra-desc{font-size:.72rem;color:#aaa;font-weight:300}
+
+/* Summary */
+.config-summary{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.summary-card{
+  border:1px solid rgba(0,0,0,.08);border-radius:16px;overflow:hidden;
+}
+.summary-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1rem 1.4rem;border-bottom:1px solid rgba(0,0,0,.06);
+}
+.summary-row:last-child{border-bottom:none}
+.sr-key{font-size:.72rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#bbb}
+.sr-val{font-size:.88rem;font-weight:700;color:#1a1a1a;text-align:right;max-width:55%}
+.summary-send{
+  background:var(--ink);border-radius:20px;padding:2rem;
+}
+.summary-send h3{
+  font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;
+  color:#fff;margin-bottom:.6rem;
+}
+.summary-send p{font-size:.83rem;color:rgba(255,255,255,.5);margin-bottom:1.5rem;line-height:1.65;font-weight:300}
+.summary-note{font-size:.72rem;color:rgba(255,255,255,.25);margin-top:.75rem}
+
+/* Config nav */
+.config-nav{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(0,0,0,.07);
+}
+.btn-back{
+  background:none;border:1.5px solid rgba(0,0,0,.14);
+  color:#888;border-radius:100px;
+  padding:.75rem 1.8rem;font-size:.84rem;font-weight:600;
+  cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif;
+}
+.btn-back:hover{border-color:#888;color:#444}
+.btn-next{
+  background:var(--orange);color:#fff;border:none;
+  border-radius:100px;padding:.8rem 2.2rem;
+  font-size:.84rem;font-weight:600;cursor:pointer;
+  transition:all .2s;font-family:'Inter',sans-serif;
+  box-shadow:0 0 24px rgba(224,123,42,.3);
+}
+.btn-next:hover{background:var(--orange-dark);transform:translateY(-1px);box-shadow:0 0 32px rgba(224,123,42,.45)}
+
 /* ───────── KEYFRAMES ───────── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 @keyframes fadeDown{from{opacity:0;transform:translate(-50%,-16px)}to{opacity:1;transform:translate(-50%,0)}}
 
 /* ───────── RESPONSIVE ───────── */
+@media(max-width:760px){
+  .nav-links{display:none}
+  .nav-burger{display:block}
+  .config-layout{grid-template-columns:1fr}
+  .oven-panel{position:static;margin-top:1.5rem}
+  .extras-grid{grid-template-columns:1fr}
+  .config-summary{grid-template-columns:1fr}
+  .config-steps{gap:0}
+  .cs-label{display:none}
+}
 @media(max-width:960px){
   .nav-links a:not(.nav-cta){display:none}
   .service-grid{grid-template-columns:1fr;gap:1rem}
@@ -817,9 +1007,21 @@ footer p{font-size:.75rem;color:rgba(255,255,255,.25)}
   <div class="nav-links">
     <a onclick="showPage('home')" class="active" id="nav-home">Home</a>
     <a onclick="showPage('reviews')" id="nav-reviews">Reviews</a>
+    <a onclick="showPage('mago')" id="nav-mago">The Mago</a>
     <a onclick="showPage('contact')" id="nav-contact">Contact</a>
     <a onclick="showPage('contact')" class="nav-cta">Get a Quote</a>
   </div>
+  <button class="nav-burger" id="nav-burger" onclick="toggleMenu()" aria-label="Menu">&#9776;</button>
+</nav>
+<div class="nav-mobile" id="nav-mobile">
+  <a onclick="showPage('home');closeMenu()" id="mnav-home" class="active">Home</a>
+  <a onclick="showPage('reviews');closeMenu()" id="mnav-reviews">Reviews</a>
+  <a onclick="showPage('mago');closeMenu()" id="mnav-mago">The Mago</a>
+  <a onclick="showPage('contact');closeMenu()" id="mnav-contact">Contact</a>
+  <a onclick="showPage('contact');closeMenu()" class="nav-mobile-cta">Get a Quote</a>
+</div>
+<div id="nav-overlay" onclick="closeMenu()" style="display:none;position:fixed;inset:0;z-index:490"></div>
+<nav class="nav" style="display:none"><!-- dummy to close original nav tag -->
 </nav>
 
 <!-- ════════════════════════════════
@@ -1228,6 +1430,241 @@ footer p{font-size:.75rem;color:rgba(255,255,255,.25)}
 
 
 <!-- ════════════════════════════════
+     PAGE: THE MAGO CONFIGURATOR
+════════════════════════════════ -->
+<div class="page" id="page-mago">
+
+  <div class="page-hero">
+    <div class="orb" style="width:600px;height:600px;top:-150px;right:-100px;background:radial-gradient(circle,rgba(224,123,42,.3),transparent 70%);filter:blur(80px)"></div>
+    <div class="orb" style="width:450px;height:450px;bottom:-100px;left:-80px;background:radial-gradient(circle,rgba(180,55,20,.22),transparent 70%);filter:blur(80px)"></div>
+    <div class="page-hero-noise"></div>
+    <div class="page-hero-inner">
+      <span class="section-tag" style="display:block;text-align:center;margin-bottom:1rem">Design Your Oven</span>
+      <h1>Build your<br><em>Mago.</em></h1>
+      <p style="margin-top:1rem">Choose your size, finish and extras. We'll render it in 3D and build it exactly as you see it.</p>
+    </div>
+  </div>
+
+  <div class="mago-config">
+    <div class="mc-inner">
+
+      <!-- Step progress -->
+      <div class="config-steps">
+        <div class="cs-step active" id="step-1"><div class="cs-num">1</div><div class="cs-label">Size</div></div>
+        <div class="cs-step" id="step-2"><div class="cs-num">2</div><div class="cs-label">Finish</div></div>
+        <div class="cs-step" id="step-3"><div class="cs-num">3</div><div class="cs-label">Extras</div></div>
+        <div class="cs-step" id="step-4"><div class="cs-num">4</div><div class="cs-label">Summary</div></div>
+      </div>
+
+      <!-- ── STEP 1: SIZE ── -->
+      <div class="config-panel active" id="panel-1">
+        <h2>Choose your <em>size.</em></h2>
+        <p class="config-sub">All sizes produce authentic wood-fired results. The difference is capacity.</p>
+        <div class="config-layout">
+          <div class="config-options">
+            <div class="config-opt selected" onclick="selectOpt(this,'size','Small — 80cm')" data-val="Small — 80cm">
+              <span class="co-icon">🔥</span>
+              <div><div class="co-name">Small — 80cm</div><div class="co-desc">Perfect for couples & small families. 2 pizzas at a time.</div></div>
+              <div class="co-check"></div>
+            </div>
+            <div class="config-opt" onclick="selectOpt(this,'size','Medium — 100cm')" data-val="Medium — 100cm">
+              <span class="co-icon">🔥🔥</span>
+              <div><div class="co-name">Medium — 100cm</div><div class="co-desc">Most popular. 3–4 pizzas or a full roast. Perfect for entertaining.</div></div>
+              <div class="co-check"></div>
+            </div>
+            <div class="config-opt" onclick="selectOpt(this,'size','Large — 120cm')" data-val="Large — 120cm">
+              <span class="co-icon">🔥🔥🔥</span>
+              <div><div class="co-name">Large — 120cm</div><div class="co-desc">For the serious entertainer. 5–6 pizzas simultaneously.</div></div>
+              <div class="co-check"></div>
+            </div>
+          </div>
+          <div class="oven-panel">
+            <div class="oven-panel-label">Your Mago — Live Preview</div>
+            <svg id="oven-svg" viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="150" cy="248" rx="95" ry="10" fill="rgba(0,0,0,0.18)"/>
+              <rect x="42" y="178" width="216" height="62" rx="7" fill="#6B5A48"/>
+              <path d="M42,178 L62,160 L238,160 L258,178 Z" fill="#8B7560"/>
+              <path d="M258,160 L258,240 L238,240 L238,178 Z" fill="#4a3d2e"/>
+              <ellipse cx="150" cy="168" rx="108" ry="18" fill="#7a6950"/>
+              <path id="oven-dome" d="M 42,168 A 108,98 0 0,1 258,168" fill="#c4603a"/>
+              <path d="M 70,152 A 82,72 0 0,1 195,100" fill="none" stroke="rgba(255,255,255,0.11)" stroke-width="11" stroke-linecap="round"/>
+              <ellipse id="oven-dome-base" cx="150" cy="168" rx="108" ry="18" fill="#b55530"/>
+              <path d="M 110,168 A 40,48 0 0,1 190,168" fill="#180800"/>
+              <ellipse cx="150" cy="165" rx="26" ry="7" fill="rgba(255,120,0,0.22)"/>
+              <ellipse cx="150" cy="162" rx="14" ry="4" fill="rgba(255,200,0,0.18)"/>
+              <rect x="147" y="84" width="11" height="26" rx="3" fill="#6B5A48"/>
+              <rect x="143" y="80" width="19" height="8" rx="2" fill="#8B7560"/>
+              <circle cx="153" cy="73" r="4" fill="rgba(255,255,255,0.07)"/>
+              <circle cx="148" cy="63" r="5" fill="rgba(255,255,255,0.05)"/>
+              <circle cx="154" cy="53" r="6" fill="rgba(255,255,255,0.03)"/>
+            </svg>
+            <div class="oven-tags">
+              <div class="oven-tag set" id="tag-size">80cm</div>
+              <div class="oven-tag" id="tag-finish">Finish TBC</div>
+              <div class="oven-tag" id="tag-extras">No extras yet</div>
+            </div>
+          </div>
+        </div>
+        <div class="config-nav">
+          <span></span>
+          <button class="btn-next" onclick="goStep(2)">Choose Finish →</button>
+        </div>
+      </div>
+
+      <!-- ── STEP 2: FINISH ── -->
+      <div class="config-panel" id="panel-2">
+        <h2>Choose your <em>finish.</em></h2>
+        <p class="config-sub">Every finish is weather-resistant and built to last the Irish climate.</p>
+        <div class="config-layout">
+          <div class="config-options">
+            <div class="config-opt selected" onclick="selectOpt(this,'finish','Classic Brick')" data-val="Classic Brick" data-color="#c4603a" data-color2="#b55530">
+              <span class="co-icon">🧱</span>
+              <div><div class="co-name">Classic Brick</div><div class="co-desc">Traditional red brick — timeless and deeply Italian.</div></div>
+              <div class="co-check"></div>
+            </div>
+            <div class="config-opt" onclick="selectOpt(this,'finish','Mosaic Tile')" data-val="Mosaic Tile" data-color="#2e7d8c" data-color2="#1e5f6e">
+              <span class="co-icon">🔷</span>
+              <div><div class="co-name">Mosaic Tile</div><div class="co-desc">Vibrant handmade tiles for a Mediterranean statement piece.</div></div>
+              <div class="co-check"></div>
+            </div>
+            <div class="config-opt" onclick="selectOpt(this,'finish','Venetian Plaster')" data-val="Venetian Plaster" data-color="#d4c4b0" data-color2="#bfae9a">
+              <span class="co-icon">🏛️</span>
+              <div><div class="co-name">Venetian Plaster</div><div class="co-desc">Smooth rendered plaster — clean, minimal, modern.</div></div>
+              <div class="co-check"></div>
+            </div>
+            <div class="config-opt" onclick="selectOpt(this,'finish','Natural Stone')" data-val="Natural Stone" data-color="#8b7a6a" data-color2="#6e5f50">
+              <span class="co-icon">🪨</span>
+              <div><div class="co-name">Natural Stone</div><div class="co-desc">Rustic hand-laid stone for a wildly organic look.</div></div>
+              <div class="co-check"></div>
+            </div>
+          </div>
+          <div class="oven-panel">
+            <div class="oven-panel-label">Your Mago — Live Preview</div>
+            <svg viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="150" cy="248" rx="95" ry="10" fill="rgba(0,0,0,0.18)"/>
+              <rect x="42" y="178" width="216" height="62" rx="7" fill="#6B5A48"/>
+              <path d="M42,178 L62,160 L238,160 L258,178 Z" fill="#8B7560"/>
+              <path d="M258,160 L258,240 L238,240 L238,178 Z" fill="#4a3d2e"/>
+              <ellipse cx="150" cy="168" rx="108" ry="18" fill="#7a6950"/>
+              <path id="oven-dome2" d="M 42,168 A 108,98 0 0,1 258,168" fill="#c4603a"/>
+              <path d="M 70,152 A 82,72 0 0,1 195,100" fill="none" stroke="rgba(255,255,255,0.11)" stroke-width="11" stroke-linecap="round"/>
+              <ellipse id="oven-dome-base2" cx="150" cy="168" rx="108" ry="18" fill="#b55530"/>
+              <path d="M 110,168 A 40,48 0 0,1 190,168" fill="#180800"/>
+              <ellipse cx="150" cy="165" rx="26" ry="7" fill="rgba(255,120,0,0.22)"/>
+              <ellipse cx="150" cy="162" rx="14" ry="4" fill="rgba(255,200,0,0.18)"/>
+              <rect x="147" y="84" width="11" height="26" rx="3" fill="#6B5A48"/>
+              <rect x="143" y="80" width="19" height="8" rx="2" fill="#8B7560"/>
+              <circle cx="153" cy="73" r="4" fill="rgba(255,255,255,0.07)"/>
+            </svg>
+            <div class="oven-tags">
+              <div class="oven-tag set" id="tag-size2">80cm</div>
+              <div class="oven-tag set" id="tag-finish2">Classic Brick</div>
+              <div class="oven-tag" id="tag-extras2">No extras yet</div>
+            </div>
+          </div>
+        </div>
+        <div class="config-nav">
+          <button class="btn-back" onclick="goStep(1)">← Back</button>
+          <button class="btn-next" onclick="goStep(3)">Choose Extras →</button>
+        </div>
+      </div>
+
+      <!-- ── STEP 3: EXTRAS ── -->
+      <div class="config-panel" id="panel-3">
+        <h2>Add your <em>extras.</em></h2>
+        <p class="config-sub">All optional. All bespoke. All built to the same standard.</p>
+        <div class="config-layout">
+          <div>
+            <div class="extras-grid">
+              <div class="extra-opt" onclick="toggleExtra(this,'Countertop Surround')">
+                <div class="extra-checkbox"></div>
+                <div><div class="extra-name">Countertop Surround</div><div class="extra-desc">Stone or tiled prep surface wrapping the oven</div></div>
+              </div>
+              <div class="extra-opt" onclick="toggleExtra(this,'Wood Storage Arch')">
+                <div class="extra-checkbox"></div>
+                <div><div class="extra-name">Wood Storage Arch</div><div class="extra-desc">Built-in arched alcove below the oven for logs</div></div>
+              </div>
+              <div class="extra-opt" onclick="toggleExtra(this,'Integrated Lighting')">
+                <div class="extra-checkbox"></div>
+                <div><div class="extra-name">Integrated Lighting</div><div class="extra-desc">Subtle LED lighting around the oven and canopy</div></div>
+              </div>
+              <div class="extra-opt" onclick="toggleExtra(this,'Overhead Canopy')">
+                <div class="extra-checkbox"></div>
+                <div><div class="extra-name">Overhead Canopy</div><div class="extra-desc">Pergola or steel canopy above the oven area</div></div>
+              </div>
+              <div class="extra-opt" onclick="toggleExtra(this,'Side Burner Unit')">
+                <div class="extra-checkbox"></div>
+                <div><div class="extra-name">Side Burner Unit</div><div class="extra-desc">Gas burner integrated into the surround for pots & pans</div></div>
+              </div>
+              <div class="extra-opt" onclick="toggleExtra(this,'Custom Signage')">
+                <div class="extra-checkbox"></div>
+                <div><div class="extra-name">Custom Signage</div><div class="extra-desc">Your family name or crest built into the oven face</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="oven-panel">
+            <div class="oven-panel-label">Your Mago — Live Preview</div>
+            <svg viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="150" cy="248" rx="95" ry="10" fill="rgba(0,0,0,0.18)"/>
+              <rect x="42" y="178" width="216" height="62" rx="7" fill="#6B5A48"/>
+              <path d="M42,178 L62,160 L238,160 L258,178 Z" fill="#8B7560"/>
+              <path d="M258,160 L258,240 L238,240 L238,178 Z" fill="#4a3d2e"/>
+              <ellipse cx="150" cy="168" rx="108" ry="18" fill="#7a6950"/>
+              <path id="oven-dome3" d="M 42,168 A 108,98 0 0,1 258,168" fill="#c4603a"/>
+              <path d="M 70,152 A 82,72 0 0,1 195,100" fill="none" stroke="rgba(255,255,255,0.11)" stroke-width="11" stroke-linecap="round"/>
+              <ellipse id="oven-dome-base3" cx="150" cy="168" rx="108" ry="18" fill="#b55530"/>
+              <path d="M 110,168 A 40,48 0 0,1 190,168" fill="#180800"/>
+              <ellipse cx="150" cy="165" rx="26" ry="7" fill="rgba(255,120,0,0.22)"/>
+              <rect x="147" y="84" width="11" height="26" rx="3" fill="#6B5A48"/>
+              <rect x="143" y="80" width="19" height="8" rx="2" fill="#8B7560"/>
+            </svg>
+            <div class="oven-tags">
+              <div class="oven-tag set" id="tag-size3">80cm</div>
+              <div class="oven-tag set" id="tag-finish3">Classic Brick</div>
+              <div class="oven-tag" id="tag-extras3">No extras</div>
+            </div>
+          </div>
+        </div>
+        <div class="config-nav">
+          <button class="btn-back" onclick="goStep(2)">← Back</button>
+          <button class="btn-next" onclick="goStep(4)">See Summary →</button>
+        </div>
+      </div>
+
+      <!-- ── STEP 4: SUMMARY ── -->
+      <div class="config-panel" id="panel-4">
+        <h2>Your <em>Mago</em> design.</h2>
+        <p class="config-sub">Here's what you've designed. Send it to Pietro and we'll turn it into a 3D render — free.</p>
+        <div class="config-summary">
+          <div>
+            <div class="summary-card">
+              <div class="summary-row"><span class="sr-key">Oven</span><span class="sr-val">The Mago</span></div>
+              <div class="summary-row"><span class="sr-key">Size</span><span class="sr-val" id="sum-size">—</span></div>
+              <div class="summary-row"><span class="sr-key">Finish</span><span class="sr-val" id="sum-finish">—</span></div>
+              <div class="summary-row"><span class="sr-key">Extras</span><span class="sr-val" id="sum-extras">None selected</span></div>
+              <div class="summary-row"><span class="sr-key">3D Design</span><span class="sr-val" style="color:var(--orange)">Free & included</span></div>
+              <div class="summary-row"><span class="sr-key">Consultation</span><span class="sr-val" style="color:var(--orange)">Free site visit</span></div>
+            </div>
+            <div style="margin-top:1.2rem">
+              <button class="btn-back" onclick="goStep(3)">← Edit Design</button>
+            </div>
+          </div>
+          <div class="summary-send">
+            <h3>Ready to build?</h3>
+            <p>Send your design to Pietro. He'll produce a photorealistic 3D render and get back to you within one business day — no charge, no obligation.</p>
+            <a href="#" onclick="sendDesign()" class="btn btn-orange" style="display:inline-flex;cursor:pointer">Send My Design →</a>
+            <p class="summary-note">Or call Pietro directly: <a href="tel:+393780010333" style="color:rgba(255,255,255,.4)">+39 378-001-0333</a></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /page-mago -->
+
+
+<!-- ════════════════════════════════
      PAGE: REVIEWS
 ════════════════════════════════ -->
 <div class="page" id="page-reviews">
@@ -1469,11 +1906,93 @@ window.addEventListener('pageshow',e=>{if(e.persisted||performance.navigation?.t
 function showPage(name) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
-  window.scrollTo(0, 0);
-  ['home','reviews','contact'].forEach(n => {
-    const el = document.getElementById('nav-' + n);
-    if (el) el.classList.toggle('active', n === name);
+  window.scrollTo(0,0); document.documentElement.scrollTop=0; document.body.scrollTop=0;
+  ['home','reviews','mago','contact'].forEach(n => {
+    const d = document.getElementById('nav-' + n);
+    const m = document.getElementById('mnav-' + n);
+    if (d) d.classList.toggle('active', n === name);
+    if (m) m.classList.toggle('active', n === name);
   });
+}
+
+// Mobile nav
+function toggleMenu() {
+  const m = document.getElementById('nav-mobile');
+  const o = document.getElementById('nav-overlay');
+  const open = m.classList.toggle('open');
+  o.style.display = open ? 'block' : 'none';
+}
+function closeMenu() {
+  document.getElementById('nav-mobile').classList.remove('open');
+  document.getElementById('nav-overlay').style.display = 'none';
+}
+
+// Configurator state
+const cfg = { size: 'Small — 80cm', finish: 'Classic Brick', extras: [] };
+
+function selectOpt(el, key, val) {
+  el.closest('.config-options').querySelectorAll('.config-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  cfg[key] = val;
+  updateOvenVisual();
+  updateTags();
+}
+
+function toggleExtra(el, val) {
+  el.classList.toggle('selected');
+  const idx = cfg.extras.indexOf(val);
+  idx === -1 ? cfg.extras.push(val) : cfg.extras.splice(idx, 1);
+  updateTags();
+}
+
+function updateOvenVisual() {
+  const colors = {
+    'Classic Brick':    ['#c4603a','#b55530'],
+    'Mosaic Tile':      ['#2e7d8c','#1e5f6e'],
+    'Venetian Plaster': ['#d4c4b0','#bfae9a'],
+    'Natural Stone':    ['#8b7a6a','#6e5f50'],
+  };
+  const c = colors[cfg.finish] || colors['Classic Brick'];
+  [1,2,3].forEach(i => {
+    const d = document.getElementById('oven-dome' + (i===1?'':i));
+    const b = document.getElementById('oven-dome-base' + (i===1?'':i));
+    if (d) d.setAttribute('fill', c[0]);
+    if (b) b.setAttribute('fill', c[1]);
+  });
+}
+
+function updateTags() {
+  const sizeShort = cfg.size.split(' — ')[1] || cfg.size;
+  const extrasText = cfg.extras.length ? cfg.extras.length + ' added' : 'No extras';
+  [1,2,3].forEach(i => {
+    const s = document.getElementById('tag-size'+(i===1?'':i));
+    const f = document.getElementById('tag-finish'+(i===1?'':i));
+    const e = document.getElementById('tag-extras'+(i===1?'':i));
+    if (s) { s.textContent = sizeShort; s.classList.add('set'); }
+    if (f) { f.textContent = cfg.finish; f.classList.add('set'); }
+    if (e) { e.textContent = extrasText; e.classList.toggle('set', cfg.extras.length > 0); }
+  });
+}
+
+function goStep(n) {
+  for (let i=1;i<=4;i++) {
+    document.getElementById('panel-'+i).classList.toggle('active', i===n);
+    const s = document.getElementById('step-'+i);
+    s.classList.toggle('active', i===n);
+    s.classList.toggle('done', i<n);
+  }
+  if (n===4) {
+    document.getElementById('sum-size').textContent = cfg.size;
+    document.getElementById('sum-finish').textContent = cfg.finish;
+    document.getElementById('sum-extras').textContent = cfg.extras.length ? cfg.extras.join(', ') : 'None selected';
+  }
+  window.scrollTo(0,0); document.documentElement.scrollTop=0; document.body.scrollTop=0;
+}
+
+function sendDesign() {
+  const extras = cfg.extras.length ? cfg.extras.join(', ') : 'None';
+  const body = encodeURIComponent(`Hi Pietro,\n\nI've designed a Mago oven:\n- Size: ${cfg.size}\n- Finish: ${cfg.finish}\n- Extras: ${extras}\n\nPlease send me the 3D render and get in touch about a free consultation.\n\nThanks`);
+  window.location.href = `mailto:pietro@psbrick.work?subject=My%20Mago%20Design&body=${body}`;
 }
 
 // Scroll reveal
