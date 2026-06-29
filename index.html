@@ -3,670 +3,845 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PS Brick.Work — Outdoor Kitchens & Wood-Fired Ovens</title>
-<meta name="description" content="Bespoke outdoor kitchens and wood-fired ovens across Louth, Meath, Dundalk and North Dublin.">
+<title>PS Brick.Work — Bespoke Outdoor Kitchens & Wood-Fired Ovens</title>
+<meta name="description" content="Italian-crafted outdoor kitchens and wood-fired ovens. 3D designed, hand-built across Louth, Meath, Dundalk & North Dublin.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+/* ───────── RESET & BASE ───────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
-body{font-family:'Inter',sans-serif;color:#1a1a1a;background:#fff;font-size:15px;line-height:1.6}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',sans-serif;background:#fff;color:#1a1a1a;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;width:100%;object-fit:cover}
+a{text-decoration:none;color:inherit}
 
-/* ── HEADER ── */
-header{
-  background:#1a1a1a;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 2.5rem;height:68px;
-  position:sticky;top:0;z-index:100;
+/* ───────── TOKENS ───────── */
+:root{
+  --orange:#e07b2a;
+  --orange-dark:#c9581a;
+  --ink:#0d0b1a;
+  --cream:#f9f5f0;
+  --glass:rgba(255,255,255,0.07);
+  --glass-border:rgba(255,255,255,0.13);
+  --ease:cubic-bezier(.22,1,.36,1);
 }
-.logo{display:flex;align-items:center;gap:.7rem;text-decoration:none}
-.logo-icon{
-  width:38px;height:38px;background:#d4651e;border-radius:4px;
+
+/* ───────── GLASS NAV ───────── */
+.nav{
+  position:fixed;top:1.2rem;left:50%;transform:translateX(-50%);
+  z-index:500;
+  width:min(1100px,calc(100% - 3rem));
+  background:rgba(13,11,26,0.55);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid var(--glass-border);
+  border-radius:100px;
+  padding:.75rem 1.5rem;
+  display:flex;align-items:center;justify-content:space-between;
+  animation:fadeDown .7s var(--ease) .1s both;
+}
+.nav-logo{
+  display:flex;align-items:center;gap:.65rem;
+}
+.nav-logo-icon{
+  width:34px;height:34px;border-radius:8px;
+  background:var(--orange);
   display:flex;align-items:center;justify-content:center;
-  font-family:'Playfair Display',serif;font-weight:700;font-size:1rem;color:#fff;
+  font-family:'Playfair Display',serif;font-weight:900;font-size:.9rem;color:#fff;
   flex-shrink:0;
 }
-.logo-text{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#fff;line-height:1.1}
-.logo-text small{display:block;font-family:'Inter',sans-serif;font-size:.62rem;font-weight:400;color:rgba(255,255,255,.5);letter-spacing:.08em;text-transform:uppercase}
-nav{display:flex;align-items:center;gap:.25rem}
-nav a{
-  color:rgba(255,255,255,.7);text-decoration:none;
-  font-size:.82rem;font-weight:500;
-  padding:.5rem 1rem;border-radius:4px;
+.nav-logo-text{
+  font-family:'Playfair Display',serif;
+  font-weight:700;font-size:.95rem;color:#fff;
+}
+.nav-links{display:flex;align-items:center;gap:.25rem}
+.nav-links a{
+  color:rgba(255,255,255,.65);
+  font-size:.78rem;font-weight:500;
+  padding:.45rem .9rem;border-radius:100px;
   transition:background .2s,color .2s;
 }
-nav a:hover,nav a.active{background:rgba(255,255,255,.1);color:#fff}
-nav a.cta{
-  background:#d4651e;color:#fff!important;margin-left:.5rem;
+.nav-links a:hover{background:rgba(255,255,255,.1);color:#fff}
+.nav-cta{
+  background:var(--orange)!important;
+  color:#fff!important;padding:.5rem 1.25rem!important;
+  font-weight:600!important;
 }
-nav a.cta:hover{background:#b8541a}
+.nav-cta:hover{background:var(--orange-dark)!important}
 
-/* ── LAYOUT ── */
-.page{display:none}
-.page.active{display:block}
-
-/* ── HERO (Home) ── */
+/* ───────── HERO ───────── */
 .hero{
-  background:linear-gradient(135deg,#1a1a1a 0%,#2d2d2d 100%);
-  padding:6rem 2.5rem;
-  text-align:center;color:#fff;
-}
-.hero h1{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(2.2rem,5vw,3.8rem);font-weight:700;
-  line-height:1.15;margin-bottom:1.2rem;
-}
-.hero h1 span{color:#d4651e}
-.hero p{font-size:1.05rem;color:rgba(255,255,255,.7);max-width:560px;margin:0 auto 2.5rem}
-.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-.btn{
-  display:inline-block;padding:.8rem 2rem;
-  font-size:.85rem;font-weight:600;text-decoration:none;
-  border-radius:4px;transition:opacity .2s,transform .2s;
-}
-.btn:hover{opacity:.88;transform:translateY(-1px)}
-.btn-orange{background:#d4651e;color:#fff}
-.btn-outline{border:2px solid rgba(255,255,255,.4);color:#fff}
-
-/* ── SERVICES STRIP (Home) ── */
-.services-strip{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  border-bottom:1px solid #e8e8e8;
-}
-.strip-item{
-  padding:2.5rem 2rem;
-  border-right:1px solid #e8e8e8;
+  min-height:100svh;
+  background:var(--ink);
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:8rem 2rem 5rem;
   text-align:center;
 }
-.strip-item:last-child{border-right:none}
-.strip-icon{
-  width:48px;height:48px;background:#fff5f0;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;
-  color:#d4651e;font-size:1.3rem;
-}
-.strip-item h3{font-size:1rem;font-weight:600;margin-bottom:.5rem}
-.strip-item p{font-size:.85rem;color:#666;line-height:1.6}
 
-/* ── ABOUT ROW (Home) ── */
-.about-row{
-  display:grid;grid-template-columns:1fr 1fr;
-  min-height:420px;
+/* Gradient orbs */
+.orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
+.orb-1{width:700px;height:700px;top:-200px;right:-150px;background:radial-gradient(circle,rgba(224,123,42,.32),transparent 70%);animation:drift1 12s ease-in-out infinite alternate}
+.orb-2{width:550px;height:550px;bottom:-150px;left:-100px;background:radial-gradient(circle,rgba(180,55,20,.28),transparent 70%);animation:drift2 15s ease-in-out infinite alternate}
+.orb-3{width:400px;height:400px;top:50%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(100,40,10,.15),transparent 70%);animation:drift3 9s ease-in-out infinite alternate}
+@keyframes drift1{from{transform:translate(0,0) scale(1)}to{transform:translate(-40px,30px) scale(1.08)}}
+@keyframes drift2{from{transform:translate(0,0) scale(1)}to{transform:translate(30px,-40px) scale(1.1)}}
+@keyframes drift3{from{transform:translate(-50%,-50%) scale(1)}to{transform:translate(-50%,-50%) scale(1.15)}}
+
+/* Noise overlay */
+.hero-noise{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity:.035;
 }
-.about-img{
-  background:linear-gradient(145deg,#2e1c0c,#5a3018,#2e1c0c);
-  display:flex;align-items:center;justify-content:center;
+
+/* Hero content */
+.hero-content{position:relative;z-index:2;max-width:820px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:.55rem;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:100px;
+  padding:.45rem 1.1rem;
+  font-size:.73rem;font-weight:500;color:rgba(255,255,255,.8);
+  letter-spacing:.06em;text-transform:uppercase;
+  margin-bottom:2rem;
+  animation:fadeUp .7s var(--ease) .3s both;
 }
-.about-img-inner{
-  text-align:center;color:rgba(255,255,255,.15);
+.hero-badge span{
+  width:6px;height:6px;border-radius:50%;background:var(--orange);flex-shrink:0;
+  box-shadow:0 0 6px var(--orange);
 }
-.about-img-inner p{font-family:'Playfair Display',serif;font-size:4rem;font-style:italic;line-height:1}
-.about-content{
-  padding:4rem 3.5rem;
-  display:flex;flex-direction:column;justify-content:center;
-  background:#f9f7f5;
-}
-.about-content .tag{
-  font-size:.68rem;font-weight:600;letter-spacing:.14em;
-  text-transform:uppercase;color:#d4651e;margin-bottom:.8rem;
-}
-.about-content h2{
+.hero-h1{
   font-family:'Playfair Display',serif;
-  font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700;
-  margin-bottom:1.2rem;line-height:1.2;
+  font-size:clamp(3rem,7vw,6.5rem);
+  font-weight:900;line-height:1;
+  color:#fff;letter-spacing:-.02em;
+  margin-bottom:1.5rem;
+  animation:fadeUp .8s var(--ease) .45s both;
 }
-.about-content p{font-size:.92rem;color:#555;line-height:1.75;margin-bottom:1rem}
+.hero-h1 em{
+  font-style:italic;
+  background:linear-gradient(135deg,var(--orange),#f0a94e,var(--orange-dark));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-sub{
+  font-size:clamp(1rem,1.8vw,1.18rem);
+  font-weight:300;color:rgba(255,255,255,.6);
+  line-height:1.7;max-width:560px;margin:0 auto 2.5rem;
+  animation:fadeUp .8s var(--ease) .6s both;
+}
+.hero-btns{
+  display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;
+  animation:fadeUp .8s var(--ease) .75s both;
+  margin-bottom:4rem;
+}
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.9rem 2.2rem;border-radius:100px;
+  font-size:.88rem;font-weight:600;
+  transition:all .25s;cursor:pointer;border:none;
+}
+.btn-orange{background:var(--orange);color:#fff;box-shadow:0 0 30px rgba(224,123,42,.35)}
+.btn-orange:hover{background:var(--orange-dark);transform:translateY(-2px);box-shadow:0 0 40px rgba(224,123,42,.5)}
+.btn-glass{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.2);
+  color:#fff;
+}
+.btn-glass:hover{background:rgba(255,255,255,.14);transform:translateY(-2px)}
 
-/* ── TESTIMONIAL (Home) ── */
-.testimonial{
-  background:#d4651e;padding:4rem 2.5rem;text-align:center;color:#fff;
+/* ── FLOATING GLASS CARDS ── */
+.hero-cards{
+  display:flex;gap:1.2rem;flex-wrap:wrap;justify-content:center;
+  position:relative;z-index:2;
+  animation:fadeUp .9s var(--ease) .9s both;
 }
-.testimonial blockquote{
+.glass-card{
+  background:rgba(255,255,255,.07);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:20px;
+  padding:1.4rem 1.8rem;
+  text-align:left;
+  box-shadow:0 8px 32px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.1);
+  min-width:200px;
+}
+.gc-label{
+  font-size:.65rem;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--orange);
+  margin-bottom:.9rem;
+}
+.gc-item{
+  display:flex;align-items:center;gap:.65rem;
+  padding:.4rem 0;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  font-size:.82rem;color:rgba(255,255,255,.8);font-weight:400;
+}
+.gc-item:last-child{border-bottom:none}
+.gc-dot{width:5px;height:5px;border-radius:50%;background:var(--orange);flex-shrink:0}
+.gc-stat{
   font-family:'Playfair Display',serif;
-  font-size:clamp(1.3rem,3vw,2rem);font-style:italic;font-weight:400;
-  max-width:700px;margin:0 auto 1.5rem;line-height:1.45;
+  font-size:1.8rem;font-weight:700;
+  color:#fff;line-height:1;margin-bottom:.2rem;
 }
-.testimonial cite{font-size:.8rem;opacity:.75;letter-spacing:.08em;text-transform:uppercase}
+.gc-stat-label{font-size:.74rem;color:rgba(255,255,255,.5);font-weight:300}
 
-/* ── PAGE WITH SIDEBAR ── */
-.content-area{
-  display:grid;grid-template-columns:240px 1fr;
-  min-height:calc(100vh - 68px);
-  align-items:start;
+/* Stats card */
+.glass-card-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:0;min-width:340px;padding:0;overflow:hidden;
 }
-.sidebar{
-  background:#f9f7f5;
-  border-right:1px solid #e8e8e8;
-  padding:2rem 0;
-  position:sticky;top:68px;
-  height:calc(100vh - 68px);
-  overflow-y:auto;
+.gc-stat-cell{
+  padding:1.4rem 1.5rem;
+  border-right:1px solid rgba(255,255,255,.08);
+  text-align:center;
 }
-.sidebar-section{margin-bottom:2rem}
-.sidebar-label{
-  font-size:.65rem;font-weight:700;letter-spacing:.14em;
-  text-transform:uppercase;color:#999;
-  padding:.4rem 1.5rem;margin-bottom:.4rem;
-}
-.sidebar a{
-  display:block;padding:.6rem 1.5rem;
-  font-size:.85rem;color:#444;text-decoration:none;
-  border-left:3px solid transparent;
-  transition:background .15s,border-color .15s,color .15s;
-}
-.sidebar a:hover{background:#efe9e2;color:#1a1a1a;border-color:#d4651e}
-.sidebar a.active{background:#fff5f0;color:#d4651e;border-color:#d4651e;font-weight:500}
-.sidebar-contact{
-  margin:1.5rem;padding:1.2rem;
-  background:#1a1a1a;border-radius:6px;color:#fff;
-}
-.sidebar-contact p{font-size:.78rem;color:rgba(255,255,255,.6);margin-bottom:.8rem}
-.sidebar-contact a{
-  display:block;color:#d4651e!important;font-size:.82rem;
-  font-weight:500;padding:.3rem 0!important;border:none!important;
-  background:none!important;
-}
+.gc-stat-cell:last-child{border-right:none}
 
-/* ── MAIN CONTENT ── */
-.main{padding:3rem 3.5rem}
-.page-header{
-  padding-bottom:2rem;border-bottom:1px solid #e8e8e8;margin-bottom:2.5rem;
+/* Scroll indicator */
+.scroll-ind{
+  position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;
+  z-index:2;
+  animation:fadeUp .8s var(--ease) 1.2s both;
 }
-.page-header .tag{
-  font-size:.68rem;font-weight:600;letter-spacing:.14em;
-  text-transform:uppercase;color:#d4651e;margin-bottom:.6rem;
+.scroll-ind span{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3)}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--orange),transparent);animation:scl 2s ease-in-out infinite}
+@keyframes scl{0%,100%{opacity:.4;transform:scaleY(.5)}50%{opacity:1;transform:scaleY(1)}}
+
+/* ───────── SECTION COMMONS ───────── */
+.section{padding:6rem 2rem}
+.section-sm{padding:4rem 2rem}
+.wrap{max-width:1140px;margin:0 auto}
+.section-tag{
+  display:inline-block;
+  font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--orange);margin-bottom:.9rem;
 }
-.page-header h1{
+.section-h2{
   font-family:'Playfair Display',serif;
-  font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;line-height:1.2;
+  font-size:clamp(2rem,4vw,3.4rem);font-weight:900;
+  line-height:1.1;letter-spacing:-.02em;margin-bottom:1.2rem;
 }
-.page-header p{font-size:.92rem;color:#666;margin-top:.6rem;max-width:600px}
+.section-h2 em{font-style:italic;color:var(--orange)}
+.section-sub{
+  font-size:1rem;font-weight:300;color:#666;line-height:1.75;
+  max-width:540px;
+}
 
-/* Service cards */
-.service-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-bottom:2.5rem}
+/* Reveal */
+.r{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.r.in{opacity:1;transform:none}
+
+/* ───────── SERVICES SECTION ───────── */
+.services{background:#fff}
+.services-intro{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  gap:2rem;margin-bottom:3.5rem;flex-wrap:wrap;
+}
+.service-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:1.5rem;
+}
 .service-card{
-  border:1px solid #e8e8e8;border-radius:6px;overflow:hidden;
-  transition:box-shadow .25s;
+  border-radius:16px;overflow:hidden;
+  position:relative;background:#111;
+  transition:transform .4s var(--ease),box-shadow .4s;
 }
-.service-card:hover{box-shadow:0 4px 20px rgba(0,0,0,.08)}
-.sc-img{
-  height:180px;
-  display:flex;align-items:center;justify-content:center;
+.service-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.14)}
+.service-card img{
+  height:260px;transition:transform .6s var(--ease);filter:brightness(.75);
 }
-.sc-kitchen{background:linear-gradient(145deg,#2e1c0c,#6a3a18)}
-.sc-oven{background:linear-gradient(145deg,#1a1010,#4a2010)}
-.sc-stone{background:linear-gradient(145deg,#222,#444)}
-.sc-design{background:linear-gradient(145deg,#0a1a2a,#1a3050)}
-.sc-img span{
-  font-family:'Playfair Display',serif;font-size:3rem;font-style:italic;
-  color:rgba(255,255,255,.15);
+.service-card:hover img{transform:scale(1.04)}
+.sc-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.1) 60%,transparent 100%);
 }
-.sc-body{padding:1.4rem}
-.sc-body h3{font-size:1rem;font-weight:600;margin-bottom:.5rem}
-.sc-body p{font-size:.84rem;color:#666;line-height:1.65}
-
-/* Finishes grid */
-.finishes-section{margin-top:2.5rem}
-.finishes-section h2{
+.sc-body{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:1.8rem 2rem;color:#fff;
+}
+.sc-num{
+  font-size:.65rem;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--orange);margin-bottom:.5rem;
+}
+.sc-title{
   font-family:'Playfair Display',serif;
-  font-size:1.5rem;font-weight:700;margin-bottom:1.5rem;
+  font-size:1.5rem;font-weight:700;margin-bottom:.5rem;
 }
-.fin-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
-.fin-card{
-  border:1px solid #e8e8e8;border-radius:6px;overflow:hidden;
-  text-align:center;transition:box-shadow .2s;cursor:pointer;
+.sc-text{font-size:.83rem;color:rgba(255,255,255,.7);line-height:1.6;font-weight:300}
+.sc-arrow{
+  display:inline-flex;align-items:center;gap:.4rem;
+  margin-top:1rem;font-size:.75rem;font-weight:600;
+  color:var(--orange);text-transform:uppercase;letter-spacing:.08em;
+  transition:gap .25s;
 }
-.fin-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.09);transform:translateY(-2px);transition:all .2s}
-.fin-swatch{height:120px}
-.fin-brick-s{background:linear-gradient(155deg,#5a2010,#8c3615)}
-.fin-tile-s{background:linear-gradient(155deg,#1a2535,#2d4060)}
-.fin-mosaic-s{background:linear-gradient(155deg,#1e0f35,#3a1860)}
-.fin-plaster-s{background:linear-gradient(155deg,#2c2418,#403320)}
-.fin-card p{padding:.7rem;font-size:.82rem;font-weight:600;color:#333}
+.service-card:hover .sc-arrow{gap:.7rem}
 
-/* Process steps */
-.process{margin-top:2.5rem}
-.process h2{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin-bottom:1.5rem}
-.steps{display:flex;flex-direction:column;gap:0}
-.step{
-  display:flex;gap:1.5rem;padding:1.5rem 0;
-  border-bottom:1px solid #f0f0f0;
+/* ───────── MAGO FEATURE ───────── */
+.mago{background:var(--ink);color:#fff}
+.mago-inner{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:5rem;align-items:center;
 }
-.step:last-child{border-bottom:none}
-.step-num{
-  width:36px;height:36px;border-radius:50%;
-  background:#fff5f0;border:2px solid #d4651e;
-  display:flex;align-items:center;justify-content:center;
-  font-size:.8rem;font-weight:700;color:#d4651e;flex-shrink:0;margin-top:2px;
+.mago-img-wrap{
+  border-radius:20px;overflow:hidden;
+  position:relative;
+  box-shadow:0 32px 80px rgba(0,0,0,.6);
 }
-.step-content h4{font-size:.95rem;font-weight:600;margin-bottom:.35rem}
-.step-content p{font-size:.85rem;color:#666;line-height:1.65}
-
-/* ── CONTACT PAGE ── */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-bottom:2.5rem}
-.contact-card{
-  background:#f9f7f5;border-radius:8px;
-  padding:2rem;border:1px solid #e8e8e8;
+.mago-img-wrap img{height:520px;filter:brightness(.85)}
+.mago-img-badge{
+  position:absolute;bottom:1.5rem;left:1.5rem;
+  background:rgba(13,11,26,.75);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:12px;
+  padding:1rem 1.4rem;color:#fff;
 }
-.contact-card h3{font-size:1rem;font-weight:600;margin-bottom:1.2rem;padding-bottom:.8rem;border-bottom:2px solid #d4651e}
-.contact-item{
+.mib-val{
+  font-family:'Playfair Display',serif;
+  font-size:1.6rem;font-weight:700;color:var(--orange);
+}
+.mib-label{font-size:.72rem;color:rgba(255,255,255,.55);margin-top:.2rem}
+.mago-content .section-sub{color:rgba(255,255,255,.6);max-width:100%;margin-bottom:2rem}
+.mago-points{list-style:none;margin-bottom:2.5rem}
+.mago-points li{
   display:flex;align-items:flex-start;gap:.9rem;
-  padding:.7rem 0;border-bottom:1px solid #ececec;
+  padding:.85rem 0;border-bottom:1px solid rgba(255,255,255,.07);
+  font-size:.9rem;color:rgba(255,255,255,.75);font-weight:300;line-height:1.55;
 }
-.contact-item:last-child{border-bottom:none}
-.c-icon{
-  width:32px;height:32px;background:#fff5f0;border-radius:50%;
+.mago-points li:last-child{border-bottom:none}
+.mp-icon{
+  width:26px;height:26px;border-radius:6px;
+  background:rgba(224,123,42,.18);
   display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;font-size:.9rem;color:#d4651e;margin-top:1px;
+  flex-shrink:0;font-size:.85rem;margin-top:1px;
 }
-.c-label{font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#999;margin-bottom:.2rem}
-.c-val{font-size:.92rem;font-weight:500;color:#1a1a1a}
-.c-val a{color:#1a1a1a;text-decoration:none}
-.c-val a:hover{color:#d4651e}
 
-.hours-table{width:100%}
-.hours-table tr{border-bottom:1px solid #ececec}
-.hours-table tr:last-child{border-bottom:none}
-.hours-table td{padding:.65rem 0;font-size:.88rem}
-.hours-table td:first-child{font-weight:500;color:#1a1a1a}
-.hours-table td:last-child{color:#555;text-align:right}
-.closed-tag{color:#999!important;font-style:italic}
-
-.area-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
-.area-badge{
-  background:#1a1a1a;color:#fff;border-radius:6px;
-  padding:1.2rem;text-align:center;
+/* ───────── WHY US ───────── */
+.why{background:var(--cream)}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3.5rem}
+.why-card{
+  background:#fff;border-radius:16px;
+  padding:2.2rem 2rem;
+  border:1px solid rgba(0,0,0,.06);
+  transition:box-shadow .3s,transform .3s;
 }
-.area-badge::before{content:'📍';font-size:1.2rem;display:block;margin-bottom:.5rem}
-.area-badge span{font-size:.88rem;font-weight:500}
-
-.contact-cta{
-  background:#d4651e;border-radius:8px;padding:2.5rem;text-align:center;color:#fff;margin-top:2rem;
+.why-card:hover{box-shadow:0 12px 40px rgba(0,0,0,.09);transform:translateY(-4px)}
+.why-icon{
+  width:48px;height:48px;border-radius:12px;
+  background:linear-gradient(135deg,var(--orange),var(--orange-dark));
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;margin-bottom:1.3rem;
+  box-shadow:0 6px 20px rgba(224,123,42,.3);
 }
-.contact-cta h3{font-family:'Playfair Display',serif;font-size:1.5rem;margin-bottom:.6rem}
-.contact-cta p{font-size:.88rem;opacity:.85;margin-bottom:1.5rem}
-.cta-pair{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
-.cta-pair a{
-  background:#fff;color:#d4651e;
-  padding:.75rem 2rem;border-radius:4px;
-  font-size:.85rem;font-weight:600;text-decoration:none;
-  transition:opacity .2s;
-}
-.cta-pair a:hover{opacity:.9}
-.cta-pair a.alt{background:rgba(255,255,255,.15);color:#fff}
+.why-card h3{font-size:1.05rem;font-weight:700;margin-bottom:.6rem;letter-spacing:-.01em}
+.why-card p{font-size:.86rem;color:#666;line-height:1.68}
 
-/* ── FOOTER ── */
+/* ───────── FINISHES ───────── */
+.finishes{background:#fff}
+.fin-intro{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:3rem}
+.fin-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+.fin-card{
+  border-radius:14px;overflow:hidden;
+  position:relative;cursor:pointer;
+  aspect-ratio:.75/1;
+  transition:transform .35s var(--ease),box-shadow .35s;
+}
+.fin-card:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 20px 50px rgba(0,0,0,.18)}
+.fin-card img{height:100%;transition:transform .6s var(--ease)}
+.fin-card:hover img{transform:scale(1.06)}
+.fin-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.75) 0%,transparent 55%);
+}
+.fin-label{
+  position:absolute;bottom:0;left:0;right:0;padding:1.2rem 1.1rem;color:#fff;
+}
+.fin-num{font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:.3rem}
+.fin-name{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700}
+
+/* ───────── PROCESS ───────── */
+.process{background:var(--ink);color:#fff}
+.process-intro{text-align:center;max-width:580px;margin:0 auto 4rem}
+.process-intro .section-sub{color:rgba(255,255,255,.55);margin:0 auto}
+.steps{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:0;position:relative;
+}
+.steps::before{
+  content:'';position:absolute;top:28px;left:calc(12.5% + 14px);right:calc(12.5% + 14px);
+  height:1px;background:rgba(255,255,255,.12);
+}
+.step{text-align:center;padding:0 1rem}
+.step-num-wrap{
+  width:56px;height:56px;border-radius:50%;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.14);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1.5rem;position:relative;z-index:1;
+  font-family:'Playfair Display',serif;
+  font-size:1.2rem;font-weight:700;color:var(--orange);
+}
+.step h4{font-size:.95rem;font-weight:600;margin-bottom:.6rem;color:#fff}
+.step p{font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.65;font-weight:300}
+
+/* ───────── SERVICE AREA ───────── */
+.area{background:var(--cream)}
+.area-inner{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.area-map{
+  border-radius:16px;overflow:hidden;
+  height:400px;position:relative;
+  background:linear-gradient(145deg,#1a2535,#2d4060);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 20px 60px rgba(0,0,0,.15);
+}
+.area-map img{height:100%;object-fit:cover;opacity:.6}
+.area-map-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(13,11,26,.6),rgba(224,123,42,.15));
+  display:flex;align-items:center;justify-content:center;
+}
+.area-map-label{
+  font-family:'Playfair Display',serif;
+  font-size:2rem;font-style:italic;
+  color:rgba(255,255,255,.2);text-align:center;
+}
+.location-list{list-style:none;margin:1.8rem 0 2.5rem}
+.location-list li{
+  display:flex;align-items:center;gap:1rem;
+  padding:.9rem 0;border-bottom:1px solid rgba(0,0,0,.07);
+  font-size:.95rem;font-weight:500;
+}
+.location-list li:last-child{border-bottom:none}
+.loc-dot{width:8px;height:8px;border-radius:50%;background:var(--orange);flex-shrink:0}
+.hours-mini{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:rgba(0,0,0,.08);
+  border-radius:10px;overflow:hidden;margin-top:.5rem;
+}
+.hour-cell{
+  background:#fff;padding:1rem;text-align:center;
+}
+.hour-cell .day{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:.35rem}
+.hour-cell .time{font-size:.8rem;font-weight:500;color:#1a1a1a}
+
+/* ───────── CONTACT ───────── */
+.contact{
+  background:var(--ink);color:#fff;
+  padding:8rem 2rem;text-align:center;position:relative;overflow:hidden;
+}
+.contact::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 50% 80%,rgba(224,123,42,.13),transparent 65%);
+  pointer-events:none;
+}
+.contact-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.contact-h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.8rem,6vw,6rem);font-weight:900;font-style:italic;
+  line-height:.95;letter-spacing:-.03em;margin-bottom:1.4rem;
+}
+.contact-sub{font-size:1rem;font-weight:300;color:rgba(255,255,255,.55);margin-bottom:3.5rem;line-height:1.7}
+.contact-links{max-width:500px;margin:0 auto 3rem;border-top:1px solid rgba(255,255,255,.1)}
+.contact-link{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.6rem 0;border-bottom:1px solid rgba(255,255,255,.1);
+  transition:padding-left .3s var(--ease);cursor:pointer;
+}
+.contact-link:hover{padding-left:.8rem}
+.cl-left{text-align:left}
+.cl-type{font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:.3rem}
+.cl-val{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,2.5vw,2rem);font-weight:400;color:#fff}
+.cl-arr{font-size:1.2rem;color:rgba(255,255,255,.3);transition:color .25s,transform .25s}
+.contact-link:hover .cl-arr{color:var(--orange);transform:translateX(5px)}
+.contact-note{font-size:.78rem;color:rgba(255,255,255,.28)}
+
+/* ───────── FOOTER ───────── */
 footer{
-  background:#1a1a1a;color:rgba(255,255,255,.5);
-  padding:2rem 2.5rem;
-  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+  background:#080612;border-top:1px solid rgba(255,255,255,.07);
+  padding:3rem 2rem;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem;
 }
-footer p{font-size:.78rem}
-.f-links{display:flex;gap:1.8rem}
-.f-links a{color:rgba(255,255,255,.45);text-decoration:none;font-size:.75rem;transition:color .2s}
-.f-links a:hover{color:#fff}
+.footer-logo{
+  font-family:'Playfair Display',serif;
+  font-size:1rem;font-weight:700;color:rgba(255,255,255,.5);
+}
+.footer-logo span{color:var(--orange)}
+footer p{font-size:.75rem;color:rgba(255,255,255,.25)}
+.footer-links{display:flex;gap:2rem}
+.footer-links a{font-size:.75rem;color:rgba(255,255,255,.28);transition:color .2s}
+.footer-links a:hover{color:rgba(255,255,255,.7)}
 
-/* ── MOBILE ── */
-@media(max-width:768px){
-  header{padding:0 1rem}
-  nav a:not(.cta){display:none}
-  .services-strip{grid-template-columns:1fr}
-  .strip-item{border-right:none;border-bottom:1px solid #e8e8e8}
-  .about-row{grid-template-columns:1fr}
-  .about-img{display:none}
-  .content-area{grid-template-columns:1fr}
-  .sidebar{display:none}
-  .main{padding:2rem 1.5rem}
-  .service-cards{grid-template-columns:1fr}
+/* ───────── KEYFRAMES ───────── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeDown{from{opacity:0;transform:translate(-50%,-16px)}to{opacity:1;transform:translate(-50%,0)}}
+
+/* ───────── RESPONSIVE ───────── */
+@media(max-width:960px){
+  .nav-links a:not(.nav-cta){display:none}
+  .service-grid{grid-template-columns:1fr;gap:1rem}
+  .service-card img{height:220px}
+  .mago-inner{grid-template-columns:1fr;gap:3rem}
+  .mago-img-wrap img{height:340px}
+  .why-grid{grid-template-columns:1fr}
   .fin-grid{grid-template-columns:repeat(2,1fr)}
-  .contact-grid{grid-template-columns:1fr}
-  .area-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:repeat(2,1fr);gap:2rem}
+  .steps::before{display:none}
+  .area-inner{grid-template-columns:1fr;gap:3rem}
+  .area-map{height:280px}
+  .hero-cards{flex-direction:column;align-items:center}
+  .glass-card-stats{min-width:0;width:100%;max-width:360px}
   footer{flex-direction:column;text-align:center}
+}
+@media(max-width:560px){
+  .fin-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .hours-mini{grid-template-columns:1fr}
+  .hour-cell{border-bottom:1px solid rgba(0,0,0,.06)}
+  .hero-h1{font-size:clamp(2.6rem,12vw,4rem)}
+  .contact-links{max-width:100%}
 }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<header>
-  <a href="#" class="logo" onclick="showPage('home')">
-    <div class="logo-icon">PS</div>
-    <div class="logo-text">
-      PS Brick.Work
-      <small>Outdoor Kitchens &amp; Ovens</small>
-    </div>
-  </a>
-  <nav>
-    <a href="#" id="nav-home" class="active" onclick="showPage('home');return false">Home</a>
-    <a href="#" id="nav-services" onclick="showPage('services');return false">Our Services</a>
-    <a href="#" id="nav-contact" onclick="showPage('contact');return false">Contact</a>
-    <a href="#" class="cta" onclick="showPage('contact');return false">Get a Quote</a>
-  </nav>
-</header>
+<!-- ════ GLASSMORPHISM NAV ════ -->
+<nav class="nav">
+  <div class="nav-logo">
+    <div class="nav-logo-icon">PS</div>
+    <div class="nav-logo-text">PS Brick.Work</div>
+  </div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#mago">The Mago</a>
+    <a href="#finishes">Finishes</a>
+    <a href="#service-area">Area</a>
+    <a href="#contact" class="nav-cta">Get a Quote</a>
+  </div>
+</nav>
 
-<!-- ════ PAGE: HOME ════ -->
-<div id="page-home" class="page active">
+<!-- ════ GLASSMORPHISM HERO ════ -->
+<section class="hero">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="hero-noise"></div>
 
-  <!-- Hero -->
-  <section class="hero">
-    <h1>Bespoke Outdoor Kitchens<br>&amp; <span>Wood-Fired Ovens</span></h1>
-    <p>Designed in 3D, hand-built by Italian craftsmen. Serving Louth, Meath, Dundalk and North Dublin.</p>
+  <div class="hero-content">
+    <div class="hero-badge"><span></span> Italian Craft &middot; Irish Homes</div>
+    <h1 class="hero-h1">
+      Outdoor Kitchens<br>
+      <em>Built to Last</em><br>
+      a Lifetime.
+    </h1>
+    <p class="hero-sub">Bespoke outdoor kitchens and wood-fired ovens — 3D designed and hand-built to your exact vision, from Italy to Ireland.</p>
     <div class="hero-btns">
-      <a href="#" class="btn btn-orange" onclick="showPage('services');return false">View Our Services</a>
-      <a href="#" class="btn btn-outline" onclick="showPage('contact');return false">Get a Free Quote</a>
-    </div>
-  </section>
-
-  <!-- Services strip -->
-  <div class="services-strip">
-    <div class="strip-item">
-      <div class="strip-icon">🔥</div>
-      <h3>Wood-Fired Ovens</h3>
-      <p>Authentic pizza ovens and smokers, built to Pizzaiolo specification for real wood-fired flavour.</p>
-    </div>
-    <div class="strip-item">
-      <div class="strip-icon">🍳</div>
-      <h3>Outdoor Kitchens</h3>
-      <p>Full outdoor kitchen builds with grills, countertops, refrigeration, sinks and bar seating.</p>
-    </div>
-    <div class="strip-item">
-      <div class="strip-icon">🧱</div>
-      <h3>Stone &amp; Brickwork</h3>
-      <p>Brick, tile, mosaic and Venetian plaster finishes — selected for your space and built to last.</p>
+      <a href="#contact" class="btn btn-orange">Start Your Build</a>
+      <a href="#services" class="btn btn-glass">View Our Services</a>
     </div>
   </div>
 
-  <!-- About row -->
-  <div class="about-row">
-    <div class="about-img">
-      <div class="about-img-inner"><p>PS</p></div>
+  <!-- Floating glass cards -->
+  <div class="hero-cards">
+    <!-- Stats card -->
+    <div class="glass-card glass-card-stats">
+      <div class="gc-stat-cell">
+        <div class="gc-stat">3D</div>
+        <div class="gc-stat-label">Designed to scale</div>
+      </div>
+      <div class="gc-stat-cell">
+        <div class="gc-stat">100%</div>
+        <div class="gc-stat-label">Bespoke builds</div>
+      </div>
+      <div class="gc-stat-cell">
+        <div class="gc-stat">∞</div>
+        <div class="gc-stat-label">Finish options</div>
+      </div>
     </div>
-    <div class="about-content">
-      <p class="tag">About PS Brick.Work</p>
-      <h2>Italian Craft,<br>Built for Irish Homes</h2>
-      <p>Pietro and his team bring decades of Italian masonry tradition to every project. Every build is designed in full 3D before a single brick is laid — so you know exactly what you're getting before work begins.</p>
-      <p>No two builds are the same. Materials and finishes are chosen to suit your space, your lifestyle, and the Irish climate.</p>
-      <a href="#" class="btn btn-orange" style="margin-top:.5rem;display:inline-block" onclick="showPage('services');return false">See What We Build</a>
+
+    <!-- Trust card -->
+    <div class="glass-card">
+      <div class="gc-label">Why Choose Us</div>
+      <div class="gc-item"><span class="gc-dot"></span>Every build starts with a 3D render</div>
+      <div class="gc-item"><span class="gc-dot"></span>Free site consultation</div>
+      <div class="gc-item"><span class="gc-dot"></span>Italian craftsmanship</div>
+      <div class="gc-item"><span class="gc-dot"></span>Weather-resistant builds</div>
+    </div>
+
+    <!-- Area card -->
+    <div class="glass-card">
+      <div class="gc-label">📍 Service Area</div>
+      <div class="gc-item"><span class="gc-dot"></span>Newry &amp; Dundalk</div>
+      <div class="gc-item"><span class="gc-dot"></span>Co. Louth &amp; Meath</div>
+      <div class="gc-item"><span class="gc-dot"></span>North Dublin</div>
     </div>
   </div>
 
-  <!-- Testimonial -->
-  <div class="testimonial">
-    <blockquote>"Every build starts as a photorealistic 3D render — down to the individual brick — before a single stone is laid."</blockquote>
-    <cite>Pietro &mdash; Founder, PS Brick.Work</cite>
+  <div class="scroll-ind">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
   </div>
+</section>
 
-</div><!-- /home -->
-
-<!-- ════ PAGE: SERVICES ════ -->
-<div id="page-services" class="page">
-  <div class="content-area">
-
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="sidebar-section">
-        <div class="sidebar-label">Services</div>
-        <a href="#" class="active" onclick="scrollTo(0,0)">All Services</a>
-        <a href="#">Outdoor Kitchens</a>
-        <a href="#">Wood-Fired Ovens</a>
-        <a href="#">Stone &amp; Brickwork</a>
-        <a href="#">3D Design</a>
+<!-- ════ SERVICES ════ -->
+<section class="section services" id="services">
+  <div class="wrap">
+    <div class="services-intro">
+      <div class="r">
+        <span class="section-tag">What We Build</span>
+        <h2 class="section-h2">Crafted for the<br><em>outdoors.</em></h2>
       </div>
-      <div class="sidebar-section">
-        <div class="sidebar-label">Finishes</div>
-        <a href="#">Brick</a>
-        <a href="#">Tiles</a>
-        <a href="#">Mosaic</a>
-        <a href="#">Venetian Plaster</a>
-      </div>
-      <div class="sidebar-section">
-        <div class="sidebar-label">The Process</div>
-        <a href="#">How It Works</a>
-      </div>
-      <div class="sidebar-contact">
-        <p>Ready to start your build?</p>
-        <a href="#" onclick="showPage('contact');return false">→ Get a Free Quote</a>
-        <a href="tel:+393780010333">→ +39 378-001-0333</a>
-      </div>
-    </aside>
-
-    <!-- Main -->
-    <main class="main">
-      <div class="page-header">
-        <p class="tag">What We Build</p>
-        <h1>Our Services</h1>
-        <p>From a single wood-fired oven to a complete outdoor kitchen — every project is bespoke, 3D-designed, and hand-built.</p>
-      </div>
-
-      <!-- Service cards -->
-      <div class="service-cards">
-        <div class="service-card">
-          <div class="sc-img sc-kitchen"><span>Kitchen</span></div>
-          <div class="sc-body">
-            <h3>Outdoor Kitchens</h3>
-            <p>Complete outdoor kitchen builds with built-in grills, countertops, bar seating, cabinetry, refrigeration and sinks. Fully custom to your space.</p>
-          </div>
-        </div>
-        <div class="service-card">
-          <div class="sc-img sc-oven"><span>Oven</span></div>
-          <div class="sc-body">
-            <h3>Wood-Fired Ovens</h3>
-            <p>Bespoke pizza ovens and smokers built to authentic Pizzaiolo specification. Perfect for pizza, slow roasts, bread and more.</p>
-          </div>
-        </div>
-        <div class="service-card">
-          <div class="sc-img sc-stone"><span>Stone</span></div>
-          <div class="sc-body">
-            <h3>Stone &amp; Brickwork</h3>
-            <p>All external and decorative stonework including garden walls, feature walls, paving and edging in brick, tile, or natural stone.</p>
-          </div>
-        </div>
-        <div class="service-card">
-          <div class="sc-img sc-design"><span>3D</span></div>
-          <div class="sc-body">
-            <h3>3D Design Service</h3>
-            <p>Every build starts as a photorealistic 3D render. You see exactly how your project will look — down to the individual brick — before work begins.</p>
-          </div>
+      <p class="section-sub r" style="transition-delay:.1s">From full outdoor kitchen suites to a single Mago wood-fired oven — every project is bespoke, 3D-rendered, and hand-built.</p>
+    </div>
+    <div class="service-grid">
+      <div class="service-card r" style="transition-delay:.05s">
+        <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=80" alt="Outdoor Kitchen" loading="lazy">
+        <div class="sc-overlay"></div>
+        <div class="sc-body">
+          <div class="sc-num">01</div>
+          <div class="sc-title">Outdoor Kitchens</div>
+          <div class="sc-text">Grills, countertops, bar seating, cabinetry, refrigeration & sinks. Fully custom to your space and lifestyle.</div>
+          <div class="sc-arrow">Explore ›</div>
         </div>
       </div>
-
-      <!-- Finishes -->
-      <div class="finishes-section">
-        <h2>Available Finishes</h2>
-        <div class="fin-grid">
-          <div class="fin-card">
-            <div class="fin-swatch fin-brick-s"></div>
-            <p>Brick</p>
-          </div>
-          <div class="fin-card">
-            <div class="fin-swatch fin-tile-s"></div>
-            <p>Tiles</p>
-          </div>
-          <div class="fin-card">
-            <div class="fin-swatch fin-mosaic-s"></div>
-            <p>Mosaic</p>
-          </div>
-          <div class="fin-card">
-            <div class="fin-swatch fin-plaster-s"></div>
-            <p>Venetian Plaster</p>
-          </div>
+      <div class="service-card r" style="transition-delay:.12s">
+        <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=900&q=80" alt="Wood Fired Oven" loading="lazy">
+        <div class="sc-overlay"></div>
+        <div class="sc-body">
+          <div class="sc-num">02</div>
+          <div class="sc-title">Wood-Fired Ovens</div>
+          <div class="sc-text">The Mago oven — built to Pizzaiolo specification for authentic wood-fired pizza, roasts and bread.</div>
+          <div class="sc-arrow">Explore ›</div>
         </div>
       </div>
-
-      <!-- Process -->
-      <div class="process">
-        <h2>How It Works</h2>
-        <div class="steps">
-          <div class="step">
-            <div class="step-num">1</div>
-            <div class="step-content">
-              <h4>Free Consultation</h4>
-              <p>We visit your property, listen to your vision, and assess the space. No obligation, no cost.</p>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-num">2</div>
-            <div class="step-content">
-              <h4>3D Design</h4>
-              <p>A photorealistic 3D render of your build is produced — showing every material, finish, and dimension.</p>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-num">3</div>
-            <div class="step-content">
-              <h4>Your Approval</h4>
-              <p>You review and approve the design. We make any changes until you're completely happy.</p>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-num">4</div>
-            <div class="step-content">
-              <h4>Built by Hand</h4>
-              <p>Pietro and his team hand-build your project on site to the agreed design. No shortcuts.</p>
-            </div>
-          </div>
+      <div class="service-card r" style="transition-delay:.19s">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=900&q=80" alt="Stone Brickwork" loading="lazy">
+        <div class="sc-overlay"></div>
+        <div class="sc-body">
+          <div class="sc-num">03</div>
+          <div class="sc-title">Stone &amp; Brickwork</div>
+          <div class="sc-text">Feature walls, garden walls, paving and edging in brick, tile, natural stone and Venetian plaster.</div>
+          <div class="sc-arrow">Explore ›</div>
         </div>
       </div>
-
-    </main>
+      <div class="service-card r" style="transition-delay:.26s">
+        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=80" alt="3D Design" loading="lazy">
+        <div class="sc-overlay"></div>
+        <div class="sc-body">
+          <div class="sc-num">04</div>
+          <div class="sc-title">3D Design Service</div>
+          <div class="sc-text">See every brick, every finish, every dimension before work begins — in full photorealistic 3D.</div>
+          <div class="sc-arrow">Explore ›</div>
+        </div>
+      </div>
+    </div>
   </div>
-</div><!-- /services -->
+</section>
 
-<!-- ════ PAGE: CONTACT ════ -->
-<div id="page-contact" class="page">
-  <div class="content-area">
-
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="sidebar-section">
-        <div class="sidebar-label">Contact</div>
-        <a href="tel:+393780010333">📞 Call Pietro</a>
-        <a href="mailto:pietro@psbrick.work">✉️ Send an Email</a>
-      </div>
-      <div class="sidebar-section">
-        <div class="sidebar-label">Service Area</div>
-        <a href="#">Newry &amp; Dundalk</a>
-        <a href="#">Co. Louth &amp; Meath</a>
-        <a href="#">North Dublin</a>
-      </div>
-      <div class="sidebar-section">
-        <div class="sidebar-label">Hours</div>
-        <a href="#">Mon–Fri: 8am–4:30pm</a>
-        <a href="#">Saturday: 10am–2pm</a>
-        <a href="#">Sunday: Closed</a>
-      </div>
-    </aside>
-
-    <!-- Main -->
-    <main class="main">
-      <div class="page-header">
-        <p class="tag">Get in Touch</p>
-        <h1>Contact Us</h1>
-        <p>Ready to start your build? Get in touch for a free, no-obligation consultation and 3D design quote.</p>
-      </div>
-
-      <div class="contact-grid">
-        <!-- Contact details -->
-        <div class="contact-card">
-          <h3>Contact Details</h3>
-          <div class="contact-item">
-            <div class="c-icon">📞</div>
-            <div>
-              <div class="c-label">Phone</div>
-              <div class="c-val"><a href="tel:+393780010333">+39 378-001-0333</a></div>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="c-icon">✉️</div>
-            <div>
-              <div class="c-label">Email</div>
-              <div class="c-val"><a href="mailto:pietro@psbrick.work">pietro@psbrick.work</a></div>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="c-icon">👤</div>
-            <div>
-              <div class="c-label">Contact</div>
-              <div class="c-val">Pietro — Founder</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Opening hours -->
-        <div class="contact-card">
-          <h3>Opening Hours</h3>
-          <table class="hours-table">
-            <tr><td>Monday</td><td>8:00am – 4:30pm</td></tr>
-            <tr><td>Tuesday</td><td>8:00am – 4:30pm</td></tr>
-            <tr><td>Wednesday</td><td>8:00am – 4:30pm</td></tr>
-            <tr><td>Thursday</td><td>8:00am – 4:30pm</td></tr>
-            <tr><td>Friday</td><td>8:00am – 4:30pm</td></tr>
-            <tr><td>Saturday</td><td>10:00am – 2:00pm</td></tr>
-            <tr><td>Sunday</td><td class="closed-tag">Closed</td></tr>
-          </table>
+<!-- ════ THE MAGO ════ -->
+<section class="section mago" id="mago">
+  <div class="wrap">
+    <div class="mago-inner">
+      <div class="mago-img-wrap r">
+        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=80" alt="The Mago Wood-Fired Oven" loading="lazy">
+        <div class="mago-img-badge">
+          <div class="mib-val">The Mago</div>
+          <div class="mib-label">Signature Wood-Fired Oven</div>
         </div>
       </div>
-
-      <!-- Service area -->
-      <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:1rem">Service Area</h3>
-      <div class="area-grid" style="margin-bottom:2rem">
-        <div class="area-badge"><span>Newry &amp; Dundalk</span></div>
-        <div class="area-badge"><span>Co. Louth &amp; Meath</span></div>
-        <div class="area-badge"><span>North Dublin</span></div>
+      <div class="mago-content r" style="transition-delay:.15s">
+        <span class="section-tag">Our Signature Build</span>
+        <h2 class="section-h2" style="color:#fff">Meet<br><em>The Mago.</em></h2>
+        <p class="section-sub" style="color:rgba(255,255,255,.6);max-width:100%;margin-bottom:1.8rem">Built in 3D to scale — amendable to the singular brick. Dressed in mosaic, stonework, or whatever commands your space. Engineered according to Pizzaiolo tradition.</p>
+        <ul class="mago-points">
+          <li><span class="mp-icon">🍕</span>Reaches authentic Neapolitan temperatures for perfect pizza</li>
+          <li><span class="mp-icon">🧱</span>Modelled brick by brick in 3D before a single stone is laid</li>
+          <li><span class="mp-icon">🎨</span>Any finish — mosaic, brick, tile or Venetian plaster</li>
+          <li><span class="mp-icon">☁️</span>Weather-resistant and built for the Irish climate</li>
+        </ul>
+        <a href="#contact" class="btn btn-orange">Commission a Mago</a>
       </div>
-
-      <!-- CTA -->
-      <div class="contact-cta">
-        <h3>Start Your Build Today</h3>
-        <p>Call or email Pietro directly — we'll arrange a free site visit and 3D design consultation.</p>
-        <div class="cta-pair">
-          <a href="tel:+393780010333">📞 Call Pietro</a>
-          <a href="mailto:pietro@psbrick.work" class="alt">✉️ Send an Email</a>
-        </div>
-      </div>
-
-    </main>
+    </div>
   </div>
-</div><!-- /contact -->
+</section>
 
-<!-- FOOTER -->
+<!-- ════ WHY US ════ -->
+<section class="section why">
+  <div class="wrap">
+    <div style="text-align:center;max-width:580px;margin:0 auto 0" class="r">
+      <span class="section-tag">Why PS Brick.Work</span>
+      <h2 class="section-h2">Italian craft.<br><em>No compromises.</em></h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card r" style="transition-delay:.05s">
+        <div class="why-icon">🎯</div>
+        <h3>3D Designed First</h3>
+        <p>Every build starts as a photorealistic 3D render. You see exactly how your project will look — down to the individual brick — before work begins.</p>
+      </div>
+      <div class="why-card r" style="transition-delay:.12s">
+        <div class="why-icon">🤝</div>
+        <h3>Truly Bespoke</h3>
+        <p>No catalogues. No shortcuts. Every project is custom-designed for your space, your lifestyle and your budget. No two builds are the same.</p>
+      </div>
+      <div class="why-card r" style="transition-delay:.19s">
+        <div class="why-icon">🏆</div>
+        <h3>Built to Outlast</h3>
+        <p>Materials chosen for the Irish climate. Weather-resistant, stone-finished construction engineered to look exceptional for decades.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FINISHES ════ -->
+<section class="section finishes" id="finishes">
+  <div class="wrap">
+    <div class="fin-intro">
+      <div class="r">
+        <span class="section-tag">Materials &amp; Finishes</span>
+        <h2 class="section-h2">Standard<br><em>custom finishes.</em></h2>
+      </div>
+      <p class="section-sub r" style="transition-delay:.1s">Every material hand-selected for beauty and permanence. Four signature finishes available across all builds.</p>
+    </div>
+    <div class="fin-grid">
+      <div class="fin-card r" style="transition-delay:.04s">
+        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=400&q=80" alt="Brick finish" loading="lazy">
+        <div class="fin-overlay"></div>
+        <div class="fin-label"><div class="fin-num">01</div><div class="fin-name">Brick</div></div>
+      </div>
+      <div class="fin-card r" style="transition-delay:.1s">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=400&q=80" alt="Tile finish" loading="lazy">
+        <div class="fin-overlay"></div>
+        <div class="fin-label"><div class="fin-num">02</div><div class="fin-name">Tiles</div></div>
+      </div>
+      <div class="fin-card r" style="transition-delay:.16s">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=400&q=80" alt="Mosaic finish" loading="lazy">
+        <div class="fin-overlay"></div>
+        <div class="fin-label"><div class="fin-num">03</div><div class="fin-name">Mosaic</div></div>
+      </div>
+      <div class="fin-card r" style="transition-delay:.22s">
+        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=400&q=80" alt="Venetian plaster" loading="lazy">
+        <div class="fin-overlay"></div>
+        <div class="fin-label"><div class="fin-num">04</div><div class="fin-name">Venetian Plaster</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ PROCESS ════ -->
+<section class="section process">
+  <div class="wrap">
+    <div class="process-intro r">
+      <span class="section-tag" style="display:block;text-align:center">How It Works</span>
+      <h2 class="section-h2" style="color:#fff;text-align:center">From vision<br><em>to reality.</em></h2>
+      <p class="section-sub" style="text-align:center;margin:.8rem auto 0">Four steps from first conversation to finished build.</p>
+    </div>
+    <div class="steps">
+      <div class="step r" style="transition-delay:.05s">
+        <div class="step-num-wrap">01</div>
+        <h4>Consultation</h4>
+        <p>Free site visit. We listen to your vision and assess the space. No obligation.</p>
+      </div>
+      <div class="step r" style="transition-delay:.12s">
+        <div class="step-num-wrap">02</div>
+        <h4>3D Design</h4>
+        <p>A photorealistic 3D render showing every brick, every finish, every dimension.</p>
+      </div>
+      <div class="step r" style="transition-delay:.19s">
+        <div class="step-num-wrap">03</div>
+        <h4>Your Approval</h4>
+        <p>Review and approve every detail. We revise until you are completely satisfied.</p>
+      </div>
+      <div class="step r" style="transition-delay:.26s">
+        <div class="step-num-wrap">04</div>
+        <h4>Built by Hand</h4>
+        <p>Pietro and his team hand-build your project on site. No shortcuts, no compromises.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ SERVICE AREA ════ -->
+<section class="section area" id="service-area">
+  <div class="wrap">
+    <div class="area-inner">
+      <div class="area-map r">
+        <img src="https://images.unsplash.com/photo-1444465693019-aa0b6392460d?auto=format&fit=crop&w=800&q=80" alt="Ireland" loading="lazy">
+        <div class="area-map-overlay">
+          <div class="area-map-label">Ireland</div>
+        </div>
+      </div>
+      <div class="r" style="transition-delay:.15s">
+        <span class="section-tag">Where We Work</span>
+        <h2 class="section-h2">We build<br><em>where you live.</em></h2>
+        <p class="section-sub">Operating across the border corridor and greater Dublin region — bringing Italian craft directly to Irish homes.</p>
+        <ul class="location-list">
+          <li><span class="loc-dot"></span> Newry &amp; Dundalk</li>
+          <li><span class="loc-dot"></span> Co. Louth &amp; Meath</li>
+          <li><span class="loc-dot"></span> North Dublin</li>
+        </ul>
+        <div class="hours-mini">
+          <div class="hour-cell"><div class="day">Mon–Fri</div><div class="time">8am – 4:30pm</div></div>
+          <div class="hour-cell"><div class="day">Saturday</div><div class="time">10am – 2pm</div></div>
+          <div class="hour-cell"><div class="day">Sunday</div><div class="time" style="color:#bbb">Closed</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CONTACT ════ -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <span class="section-tag r" style="display:block;text-align:center;margin-bottom:1rem">Get in Touch</span>
+    <h2 class="contact-h2 r">Ready<br>to build?</h2>
+    <p class="contact-sub r">Tell us about your space. We'll take care of everything from the first 3D render to the final stone.</p>
+    <div class="contact-links r">
+      <a href="tel:+393780010333" class="contact-link">
+        <div class="cl-left">
+          <div class="cl-type">Call Pietro</div>
+          <div class="cl-val">+39 378-001-0333</div>
+        </div>
+        <span class="cl-arr">→</span>
+      </a>
+      <a href="mailto:pietro@psbrick.work" class="contact-link">
+        <div class="cl-left">
+          <div class="cl-type">Send an Email</div>
+          <div class="cl-val">pietro@psbrick.work</div>
+        </div>
+        <span class="cl-arr">→</span>
+      </a>
+    </div>
+    <p class="contact-note r">We typically respond within one business day.</p>
+  </div>
+</section>
+
+<!-- ════ FOOTER ════ -->
 <footer>
+  <div class="footer-logo">PS<span>·</span>Brick.Work</div>
   <p>&copy; 2026 PS Brick.Work &middot; Crafted in Italy, Built in Ireland</p>
-  <nav class="f-links">
-    <a href="#" onclick="showPage('home');return false">Home</a>
-    <a href="#" onclick="showPage('services');return false">Services</a>
-    <a href="#" onclick="showPage('contact');return false">Contact</a>
+  <nav class="footer-links">
+    <a href="#services">Services</a>
+    <a href="#mago">The Mago</a>
+    <a href="#finishes">Finishes</a>
+    <a href="#contact">Contact</a>
   </nav>
 </footer>
 
 <script>
-function showPage(id) {
-  // Hide all pages
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  // Remove nav active
-  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-  // Show target
-  document.getElementById('page-' + id).classList.add('active');
-  // Set nav active
-  const navEl = document.getElementById('nav-' + id);
-  if(navEl) navEl.classList.add('active');
-  // Scroll to top
-  window.scrollTo(0, 0);
-}
+// Scroll reveal
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, {threshold:.1, rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.r').forEach(el => io.observe(el));
 
-// Handle browser back/forward with hash
-window.addEventListener('hashchange', () => {
-  const hash = location.hash.replace('#','') || 'home';
-  if(['home','services','contact'].includes(hash)) showPage(hash);
-});
-
-// Sidebar link highlighting (Services page)
-document.querySelectorAll('.sidebar a').forEach(a => {
-  a.addEventListener('click', function(e) {
-    if(this.getAttribute('href') === '#') {
-      const siblings = this.closest('.sidebar-section').querySelectorAll('a');
-      siblings.forEach(s => s.classList.remove('active'));
-      this.classList.add('active');
-    }
+// Stagger child delays for why-grid, steps etc
+document.querySelectorAll('.why-grid, .steps').forEach(grid => {
+  [...grid.children].forEach((child, i) => {
+    if(!child.style.transitionDelay) child.style.transitionDelay = (i * 0.08) + 's';
   });
 });
 </script>
